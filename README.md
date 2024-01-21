@@ -41,3 +41,5 @@ For the maximum anonymity it will be impossible to use any type of email address
 * PHPunit
    * [Website](https://phpunit.de/)
    
+## License
+The framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
