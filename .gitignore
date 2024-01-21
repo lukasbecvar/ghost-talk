@@ -1,0 +1,13 @@
+.env.backup
+.env.production
+.phpunit.result.cache
+/.phpunit.cache
+/public/build
+/public/hot
+/public/storage
+/public/mix-manifest.json
+/node_modules
+/storage/*.key
+/vendor
+composer.lock
+package-lock.json
