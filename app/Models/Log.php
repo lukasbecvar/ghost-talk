@@ -11,6 +11,11 @@ class Log extends Model
 
     protected $fillable = ['name', 'value', 'status'];
 
+    public function getID(): string
+    {
+        return $this->attributes['id'];
+    }
+
     public function getName(): string
     {
         return $this->attributes['name'];

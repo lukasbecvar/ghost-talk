@@ -14,6 +14,12 @@ class Kernel extends HttpKernel
      * @var array<int, class-string|string>
      */
     protected $middleware = [
+        // Illuminate middlewares
+        \Illuminate\Http\Middleware\HandleCors::class,
+        \Illuminate\Session\Middleware\StartSession::class,
+        \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
+        \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        
         // app middlewares
         \App\Http\Middleware\AssetsCheck::class,
         \App\Http\Middleware\TrimStrings::class,
@@ -21,12 +27,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\SecurityCheck::class,
         \App\Http\Middleware\DatabaseOnline::class,
         \App\Http\Middleware\MaintenanceMode::class,
-        \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
-        
-        // Illuminate middlewares
-        \Illuminate\Http\Middleware\HandleCors::class,
-        \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \App\Http\Middleware\PreventRequestsDuringMaintenance::class
     ];
 
     /**
@@ -39,12 +40,12 @@ class Kernel extends HttpKernel
             // app middlewares
             \App\Http\Middleware\EncryptCookies::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
-
+            
             // Illuminate middlewares
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \Illuminate\Session\Middleware\StartSession::class,
         ],
     ];
 

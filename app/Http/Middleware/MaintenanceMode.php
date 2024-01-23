@@ -17,8 +17,9 @@ class MaintenanceMode
     public function handle($request, Closure $next)
     {
         if ($this->app->isDownForMaintenance()) {
-            return response()->view('error/error-maintenance', [], 503);
+            return response()->view('error.error-maintenance', [], 503);
         }
+
         return $next($request);
     }
 }

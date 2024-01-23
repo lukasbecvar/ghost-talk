@@ -22,21 +22,31 @@ The ghost talk has no functions for logging ip address or other values like geol
 For the maximum anonymity it will be impossible to use any type of email address authentication, login and registration will be only with username and password. It will never be possible to reset passwords!
 
 ## TODO
-- [X] Setup and clean laravel
-- [X] Basic app base
-- [ ] Basic layout & style system (only for development)
-- [ ] Home component with information about project
-- [ ] Auth system
-- [ ] Basic user panel (username, basic navigation(logout link))
-- [ ] Contact list (store contacts(users))
-- [ ] User search (add to contacts(with verification))
-- [ ] Pending users list (contact list component)
-- [ ] User settings (change password, deactivate account, delete all chats)
-- [ ] Chat list component
-- [ ] Main chat component with
-- [ ] Highlight url links in messages
-- [ ] Photo & video share in chat
-- [ ] File share in chat
+# Phase - 1
+   - [X] Setup and clean laravel
+   - [X] Basic app base
+   - [X] Auth system
+   - [ ] Basic layout & style system (only for development)
+   - [ ] Home component with information about project
+   - [ ] Basic user panel (username, basic navigation(logout link))
+   - [ ] PHPStan code analyze 
+   - [ ] Basic unit tests
+   - [ ] Refactor
+# Phase - 2
+   - [ ] Contact list (store contacts(users))
+   - [ ] User search (add to contacts(with verification))
+   - [ ] Pending users list (contact list component)
+   - [ ] Chat list component
+# Phase - 3
+   - [ ] Main chat component with
+   - [ ] Highlight url links in messages
+   - [ ] User settings (change password, deactivate account, delete all chats)
+# Phase - 4
+   - [ ] Photo & video share in chat
+   - [ ] File share in chat
+# Phase - 5
+   - [ ] Chat history encryption (! important !)
+   - [ ] Admin system
 
 ## Dependencies 
 * Laravel
