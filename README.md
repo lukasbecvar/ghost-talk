@@ -28,7 +28,7 @@ For the maximum anonymity it will be impossible to use any type of email address
    - [X] Auth system
    - [X] Basic layout & style system (only for development)
    - [X] Home component with information about project
-   - [ ] Basic user panel (username, basic navigation(logout link))
+   - [X] Basic user panel (username, basic navigation(logout link))
    - [ ] PHPStan code analyze 
    - [ ] Basic unit tests
 ## Phase - 2

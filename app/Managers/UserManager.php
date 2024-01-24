@@ -37,7 +37,7 @@ class UserManager
         }
     }
 
-    public function isLogin(): bool
+    public function isLoggedin(): bool
     {
     
         if ($this->sessionUtil->checkSession('user-token')) {
@@ -80,5 +80,15 @@ class UserManager
     public function login(string $token): void
     {
         $this->sessionUtil->setSession('user-token', $token);
+    }
+
+    public function getLoggedUsername(): ?string
+    {
+        $token = $this->sessionUtil->getSessionValue('user-token');
+
+        $user = new User();
+        $user_data = $user->where('token', $token)->first(); 
+
+        return $user_data->getUsername();
     }
 }

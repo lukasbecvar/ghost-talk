@@ -20,7 +20,9 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        if ($this->userManager->isLogin()) {
+        $is_loggedin = $this->userManager->isLoggedin();
+        
+        if ($is_loggedin) {
             return redirect('/');
         }
 
@@ -51,7 +53,7 @@ class LoginController extends Controller
 
                     $this->userManager->login($token);
 
-                    if ($this->userManager->isLogin()) {
+                    if ($this->userManager->isLoggedin()) {
                         return redirect('/');
                     }
 
@@ -67,6 +69,8 @@ class LoginController extends Controller
 
             'username' => $username,
             'password' => $password,
+
+            'is_loggedin' => $is_loggedin
         ]);
     }
 }

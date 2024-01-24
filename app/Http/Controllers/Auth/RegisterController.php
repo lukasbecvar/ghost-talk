@@ -26,7 +26,9 @@ class RegisterController extends Controller
 
     public function register(Request $request) 
     {
-        if ($this->userManager->isLogin()) {
+        $is_loggedin = $this->userManager->isLoggedin();
+
+        if ($is_loggedin) {
             return redirect('/');
         }
 
@@ -101,7 +103,7 @@ class RegisterController extends Controller
 
                         $this->userManager->login($token);
 
-                        if ($this->userManager->isLogin()) {
+                        if ($this->userManager->isLoggedin()) {
                             return redirect('/');
                         }
 
@@ -117,7 +119,9 @@ class RegisterController extends Controller
 
             'username' => $username,
             'password' => $password,
-            're_password' => $re_password
+            're_password' => $re_password,
+
+            'is_loggedin' => $is_loggedin
         ]);
     }
 }

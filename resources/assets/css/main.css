@@ -8,6 +8,10 @@ body {
     box-sizing: border-box;
 }
 
+.m-r-3 {
+    margin-right: 3px;
+}
+
 .link {
     color: #61dafb;
     text-decoration: none;

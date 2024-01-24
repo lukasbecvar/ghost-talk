@@ -23,7 +23,7 @@ class LogoutController extends Controller
     public function logout()
     {
         try {
-            if ($this->userManager->isLogin()) {
+            if ($this->userManager->isLoggedin()) {
                 $this->sessionUtil->destroySession();
             }
         } catch (\Exception $e) {
