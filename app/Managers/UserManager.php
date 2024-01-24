@@ -84,11 +84,15 @@ class UserManager
 
     public function getLoggedUsername(): ?string
     {
-        $token = $this->sessionUtil->getSessionValue('user-token');
+        if ($this->isLoggedin()) {
+            $token = $this->sessionUtil->getSessionValue('user-token');
 
-        $user = new User();
-        $user_data = $user->where('token', $token)->first(); 
-
-        return $user_data->getUsername();
+            $user = new User();
+            $user_data = $user->where('token', $token)->first(); 
+    
+            return $user_data->getUsername();
+        } else {
+            return null;
+        }
     }
 }
