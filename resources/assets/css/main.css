@@ -8,6 +8,15 @@ body {
     box-sizing: border-box;
 }
 
+.link {
+    color: #61dafb;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
 .navbar {
     border-bottom: 1px solid #ccc;
     background-color: #383d46;
@@ -148,14 +157,5 @@ body {
 }
 
 .registration-link a:hover {
-    text-decoration: underline;
-}
-
-.basic-link {
-    color: #61dafb;
-    text-decoration: none;
-}
-
-.basic-link:hover {
     text-decoration: underline;
 }

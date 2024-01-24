@@ -27,6 +27,8 @@
                 <br><br>
                 For the maximum anonymity it will be impossible to use any type of email address authentication, 
                 login and registration will be only with username and password. It will never be possible to reset passwords!
+                <br><br>
+                You can found ghost talk source on <a href="https://github.com/lordbecvold/ghost-talk" target="_blank" class="link">github</a>
             </p>
         </div>
     </div>

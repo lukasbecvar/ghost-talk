@@ -29,6 +29,7 @@ Route::get('/logout', [LogoutController::class, 'logout']);
 
 // main home controller
 Route::get('/', [HomeController::class, 'homePage']);
+Route::get('/home', [HomeController::class, 'homePage']);
 
 // sub components
 Route::get('/about', [AboutController::class, 'aboutPage']);
