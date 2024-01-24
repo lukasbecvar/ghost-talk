@@ -6,6 +6,7 @@ use App\Http\Controller;
 use App\Managers\ErrorManager;
 use App\Managers\UserManager;
 use App\Utils\SessionUtil;
+use Illuminate\Http\RedirectResponse;
 
 class LogoutController extends Controller
 {
@@ -20,7 +21,7 @@ class LogoutController extends Controller
         $this->errorManager = $errorManager;
     }
 
-    public function logout()
+    public function logout(): RedirectResponse
     {
         try {
             if ($this->userManager->isLoggedin()) {

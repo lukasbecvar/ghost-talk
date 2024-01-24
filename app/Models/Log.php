@@ -21,7 +21,7 @@ class Log extends Model
         return $this->attributes['name'];
     }
 
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->attributes['name'] = $name;
     }
@@ -31,7 +31,7 @@ class Log extends Model
         return $this->attributes['value'];
     }
 
-    public function setValue(string $value)
+    public function setValue(string $value): void
     {
         $this->attributes['value'] = $value;
     }
@@ -41,7 +41,7 @@ class Log extends Model
         return $this->attributes['status'];
     }
 
-    public function setStatus(string $status)
+    public function setStatus(string $status): void
     {
         $this->attributes['status'] = $status;
     }

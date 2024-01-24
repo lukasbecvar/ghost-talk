@@ -22,12 +22,14 @@ class SessionUtil
         }
     }
 
-    public function destroySession() {
+    public function destroySession(): void 
+    {
         $this->startSession();
         session_destroy();
     }
 
-    public function checkSession(string $session_name): bool {
+    public function checkSession(string $session_name): bool 
+    {
         $this->startSession();
         return isset($_SESSION[$session_name]);
     }

@@ -16,7 +16,7 @@ class LogManager
         $this->errorManager = $errorManager;
     }
 
-    public function saveLog($name, $value): void
+    public function saveLog(string $name, string $value): void
     {
         $log = new Log();
 

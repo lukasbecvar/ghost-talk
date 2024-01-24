@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Managers\ErrorManager;
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class AssetsCheck
@@ -15,7 +16,7 @@ class AssetsCheck
         $this->errorManager = $errorManager;
     }
 
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         $buildPath = public_path('build');
 

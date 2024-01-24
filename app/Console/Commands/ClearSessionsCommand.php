@@ -10,7 +10,7 @@ class ClearSessionsCommand extends Command
     protected $signature = 'session:clear';
     protected $description = 'Remove session files in storage/framework/sessions/';
 
-    public function handle()
+    public function handle(): void
     {
         // get all files in session directory
         $files = File::glob(storage_path('framework/sessions/*'));

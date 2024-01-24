@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controller;
 use App\Managers\UserManager;
+use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
@@ -14,7 +15,7 @@ class HomeController extends Controller
         $this->userManager = $userManager;
     }
 
-    public function homePage()
+    public function homePage(): View
     {
         $is_loggedin = $this->userManager->isLoggedin();
         

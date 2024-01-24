@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controller;
+use Illuminate\Contracts\View\View;
 
 class ErrorController extends Controller
 {
-    public function handleError(string $code)
+    public function handleError(string $code): View
     {
         try {
             return view('error/error-'.$code);

@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Managers\ErrorManager;
 use App\Utils\SiteUtil;
 use Closure;
+use Illuminate\Http\Request;
 
 class SecurityCheck
 {
@@ -17,7 +18,7 @@ class SecurityCheck
         $this->errorManager = $errorManager;
     }
 
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         // check if app not localhost running
         if (!$this->siteUtil->isRunningLocalhost()) {

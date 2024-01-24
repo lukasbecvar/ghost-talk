@@ -31,7 +31,7 @@ class ErrorManager
         }
     }
 
-    public function handleErrorView($code): void
+    public function handleErrorView(int $code): void
     {
         $viewContent = $this->view->make('error/error_'.$code)->render();
 

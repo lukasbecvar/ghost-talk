@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controller;
 use App\Managers\UserManager;
+use Illuminate\Contracts\View\View;
 
 class AboutController extends Controller
 {
@@ -14,7 +15,7 @@ class AboutController extends Controller
         $this->userManager = $userManager;
     }
 
-    public function aboutPage()
+    public function aboutPage(): View
     {
         $is_loggedin = $this->userManager->isLoggedin();
 

@@ -10,7 +10,7 @@ class ClearLogsCommand extends Command
     protected $signature = 'logs:clear';
     protected $description = 'Remove log files in storage/logs/';
 
-    public function handle()
+    public function handle(): void
     {
         // get all files in log directory
         $files = File::glob(storage_path('logs/*'));

@@ -6,7 +6,7 @@ use App\Managers\ErrorManager;
 use Closure;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\DatabaseManager;
-
+use Illuminate\Http\Request;
 
 class DatabaseOnline
 {
@@ -19,14 +19,15 @@ class DatabaseOnline
         $this->db = $db;
     }
 
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         try {
             $this->db->connection()->getPdo();
-            return $next($request);
 
         } catch (\Exception $e) {
             $this->errorManager->handleError(500, 'Database error: '.$e->getMessage());
         }
+
+        return $next($request);
     }
 }

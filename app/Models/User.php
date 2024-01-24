@@ -21,7 +21,7 @@ class User extends Model
         return $this->attributes['username'];
     }
 
-    public function setUsername(string $username)
+    public function setUsername(string $username): void
     {
         $this->attributes['username'] = $username;
     }
@@ -31,7 +31,7 @@ class User extends Model
         return $this->attributes['password'];
     }
 
-    public function setPassword(string $password)
+    public function setPassword(string $password): void
     {
         $this->attributes['password'] = $password;
     }
@@ -41,7 +41,7 @@ class User extends Model
         return $this->attributes['token'];
     }
 
-    public function setToken(string $token)
+    public function setToken(string $token): void
     {
         $this->attributes['token'] = $token;
     }
@@ -51,7 +51,7 @@ class User extends Model
         return $this->attributes['status'];
     }
 
-    public function setStatus(string $status)
+    public function setStatus(string $status): void
     {
         $this->attributes['status'] = $status;
     }

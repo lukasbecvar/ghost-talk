@@ -1,0 +1,12 @@
+parameters:
+    level: 6
+    paths:
+        - app
+        - config
+        - public
+        - routes
+        - tests
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        - '#Call to an undefined method#'
+        - '#Call to an undefined static method#'

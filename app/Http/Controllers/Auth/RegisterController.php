@@ -8,6 +8,7 @@ use App\Managers\ErrorManager;
 use App\Managers\UserManager;
 use App\Models\User;
 use App\Utils\SecurityUtil;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -24,7 +25,7 @@ class RegisterController extends Controller
         $this->errorManager = $errorManager;
     }
 
-    public function register(Request $request) 
+    public function register(Request $request): mixed
     {
         $is_loggedin = $this->userManager->isLoggedin();
 

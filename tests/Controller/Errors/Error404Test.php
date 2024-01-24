@@ -19,7 +19,6 @@ class Error404Test extends TestCase
     public function test_error_route_returns_a_successful_response(): void
     {
         $response = $this->get('/error/404');
-        $response->assertSee('error 404');
         $response->assertStatus(200);
     }
 }

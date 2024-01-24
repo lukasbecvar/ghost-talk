@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controller;
 use App\Managers\UserManager;
 use App\Utils\SecurityUtil;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -18,10 +19,10 @@ class LoginController extends Controller
         $this->securityUtil = $securityUtil;
     }
 
-    public function login(Request $request)
+    public function login(Request $request): mixed
     {
         $is_loggedin = $this->userManager->isLoggedin();
-        
+
         if ($is_loggedin) {
             return redirect('/');
         }

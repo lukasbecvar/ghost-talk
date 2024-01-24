@@ -15,7 +15,11 @@ class SiteUtil
 
     public function getHttpHost(): string
     {
-        return $_SERVER['HTTP_HOST'];
+        if (isset($_SERVER['HTTP_HOST'])) {
+            return $_SERVER['HTTP_HOST'];
+        }
+
+        return '127.0.0.1';
     }
 
     public function isRunningLocalhost(): bool 
