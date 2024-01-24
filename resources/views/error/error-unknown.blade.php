@@ -1,7 +1,5 @@
 @extends('base.error-base')
 
-@section('title', 'Error: unknown')
-
 @section('content')
-    <p>error unknown</p>
+    <p>Unknown error, please contact the service administrator</p>
 @endsection

@@ -1,7 +1,8 @@
 const mix = require('laravel-mix');
 
-// css builder
-mix.css('resources/css/main.css', 'public/build/css');
+// build css
+mix.css('resources/assets/css/main.css', 'public/build/css');
+mix.css('resources/assets/css/error-page.css', 'public/build/css');
 
-// js builder
-mix.js('resources/js/main.js', 'public/build/js')
+// copy static assets
+mix.copy('resources/assets/images/*', 'public/build/images');

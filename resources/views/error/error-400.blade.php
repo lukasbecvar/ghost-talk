@@ -1,7 +1,6 @@
 @extends('base.error-base')
 
-@section('title', 'Error: 400')
-
 @section('content')
-    <p>error 400</p>
+    <p>Bad request error</p>
+    <p>Please try to wait and try again later</p>
 @endsection

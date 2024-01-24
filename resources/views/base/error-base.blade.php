@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', 'Error')</title>
+    <link rel="stylesheet" href={{ asset('build/css/error-page.css') }}>
+    <link rel="icon" href={{ asset('build/images/favicon.png') }} type="image/x-icon"/> 
+    <title>Ghost Talk</title>
 </head>
 <body>
-    @yield('content', 'Unknown error')
+    <center>
+        @yield('content', 'Unknown error')
+    </center>
 </body>
 </html>

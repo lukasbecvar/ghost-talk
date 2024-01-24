@@ -1,7 +1,6 @@
 @extends('base.error-base')
 
-@section('title', 'Error: 429')
-
 @section('content')
-    <p>error 429</p>
+    <p>Too Many Requests error</p>
+    <p>Please try to wait and try again later</p>
 @endsection

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -28,3 +29,6 @@ Route::get('/logout', [LogoutController::class, 'logout']);
 
 // main home controller
 Route::get('/', [HomeController::class, 'homePage']);
+
+// sub components
+Route::get('/about', [AboutController::class, 'aboutPage']);

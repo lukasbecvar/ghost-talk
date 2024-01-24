@@ -1,7 +1,6 @@
 @extends('base.error-base')
 
-@section('title', 'Error: maintenance')
-
 @section('content')
-    <p>maintenance</p>
+    <p>Error this page is unavailable</p>
+    <p>The service is temporarily unavailable due to maintenance</p>
 @endsection

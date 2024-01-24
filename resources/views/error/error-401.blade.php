@@ -1,7 +1,5 @@
 @extends('base.error-base')
 
-@section('title', 'Error: 401')
-
 @section('content')
-    <p>error 401</p>
+    <p>You do not have permission to access this page</p>
 @endsection

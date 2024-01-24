@@ -1,7 +1,6 @@
 @extends('base.error-base')
 
-@section('title', 'Error: 500')
-
 @section('content')
-    <p>error 500</p>
+    <p>Internal Server Error</p>
+    <p>The server encountered an unexpected condition that prevented it from fulfilling the request</p>
 @endsection
