@@ -30,12 +30,18 @@ body {
     z-index: 1000; 
 }
 
-.navbar-left a {
+.navbar-right {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.navbar-left a, .navbar-right a {
     color: #61dafb;
     text-decoration: none;
 }
 
-.navbar-left a:hover {
+.navbar-left a:hover, .navbar-right a:hover {
     text-decoration: underline;
 }
 
