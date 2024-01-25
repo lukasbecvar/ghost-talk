@@ -34,7 +34,7 @@ class SecurityUtil
 	
 		// derive a fixed-size key using PBKDF2 with SHA-256
 		$derived_key = hash_pbkdf2("sha256", $key, "", 10000, 32);
-	
+		
 		// Generate a random Initialization Vector (IV) for added security
 		$iv = openssl_random_pseudo_bytes(16);
 	

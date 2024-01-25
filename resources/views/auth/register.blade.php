@@ -5,12 +5,7 @@
         <div class="form-container">
             <h1 class="form-title">registration</h1>
             
-            <!-- error msg (only if error found) -->
-            @if ($error_msg)
-                <p class="error-message">
-                    error: {{ $error_msg }}
-                </p>
-            @endif
+            @include('sub-components.error-message-box')
 
             <!-- register form -->
             <form action="/register" method="post" autocomplete="off">

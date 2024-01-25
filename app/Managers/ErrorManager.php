@@ -9,11 +9,13 @@ class ErrorManager
 {
     private ViewFactory $view;
     private SiteUtil $siteUtil;
+    private LogManager $LogManager;
 
-    public function __construct(ViewFactory $view, SiteUtil $siteUtil)
+    public function __construct(ViewFactory $view, SiteUtil $siteUtil, LogManager $LogManager)
     {
         $this->view = $view;
         $this->siteUtil = $siteUtil;
+        $this->LogManager = $LogManager;
     }
 
     public function handleError(string $message, int $code): void 
@@ -24,6 +26,9 @@ class ErrorManager
             'code' => $code,
             'message' => $message
         ];
+
+        // save log to database
+        $this->LogManager->saveLog('error', $message);
 
         // check if devmode is enabled
         if ($this->siteUtil->isDevMode()) {

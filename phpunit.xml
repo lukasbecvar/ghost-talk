@@ -6,14 +6,11 @@
          cacheResult="false"
 >
     <testsuites>
-        <testsuite name="Unit">
-            <directory>tests/Unit</directory>
+        <testsuite name="Feature">
+            <directory>tests/Feature</directory>
         </testsuite>
-        <testsuite name="Controller">
-            <directory>tests/Controller</directory>
-        </testsuite>
-        <testsuite name="Errors">
-            <directory>tests/Controller/Errors</directory>
+        <testsuite name="Utils">
+            <directory>tests/Utils</directory>
         </testsuite>
     </testsuites>
     <source>

@@ -7,7 +7,6 @@ use App\Http\Controller;
 use App\Utils\SecurityUtil;
 use Illuminate\Http\Request;
 use App\Managers\UserManager;
-use App\Managers\ErrorManager;
 
 class RegisterController extends Controller
 {
