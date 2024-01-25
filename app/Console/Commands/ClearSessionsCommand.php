@@ -22,6 +22,8 @@ class ClearSessionsCommand extends Command
 
         // check if sessions is not empty
         if (count($files) > 0) {
+
+            // delete session files
             File::delete(...$files);
         }
 

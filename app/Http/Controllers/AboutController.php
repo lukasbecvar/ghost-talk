@@ -17,10 +17,12 @@ class AboutController extends Controller
 
     public function aboutPage(): View
     {
+        // get login data
         $is_loggedin = $this->userManager->isLoggedin();
         $username = $this->userManager->getLoggedUsername();
 
         return view('about', [
+            // view state
             'is_loggedin' => $is_loggedin,
             'username' => $username
         ]);

@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Managers\ErrorManager;
-use App\Utils\SiteUtil;
 use Closure;
+use App\Utils\SiteUtil;
 use Illuminate\Http\Request;
+use App\Managers\ErrorManager;
 
 class SecurityCheck
 {
@@ -22,8 +22,10 @@ class SecurityCheck
     {
         // check if app not localhost running
         if (!$this->siteUtil->isRunningLocalhost()) {
-            if (!$this->siteUtil->isSsl()) {
-                $this->errorManager->handleError(500, 'SSL error: connection not running on ssl protocol');
+
+            // check if page running over SSL
+            if (!$this->siteUtil->isSsl() && $_ENV['ONLY_SSL'] == 'true') {
+                $this->errorManager->handleError('SSL error: connection not running on ssl protocol', 500);
             }
         }
 

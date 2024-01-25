@@ -22,6 +22,8 @@ class ClearLogsCommand extends Command
 
         // check if logs is not empty
         if (count($files) > 0) {
+
+            // delete log files
             File::delete(...$files);
         }
 

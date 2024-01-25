@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Managers\ErrorManager;
 use Closure;
 use Illuminate\Http\Request;
+use App\Managers\ErrorManager;
 use Illuminate\Support\Facades\File;
 
 class AssetsCheck
@@ -18,10 +18,12 @@ class AssetsCheck
 
     public function handle(Request $request, Closure $next): mixed
     {
-        $buildPath = public_path('build');
+        // get build path (assets folder)
+        $build_path = public_path('build');
 
-        if (!File::exists($buildPath)) {
-            $this->errorManager->handleError(500, 'public/build/ not found, assets is not builded');
+        // check if assets are builded
+        if (!File::exists($build_path)) {
+            $this->errorManager->handleError('public/build/ not found, assets is not builded', 500);
         }
 
         return $next($request);

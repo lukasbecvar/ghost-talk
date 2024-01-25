@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controller;
-use App\Managers\UserManager;
 use App\Utils\SecurityUtil;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use App\Managers\UserManager;
 
 class LoginController extends Controller
 {
@@ -21,39 +20,50 @@ class LoginController extends Controller
 
     public function login(Request $request): mixed
     {
+        // get login status
         $is_loggedin = $this->userManager->isLoggedin();
 
-        if ($is_loggedin) {
+        // redirect to home (if user loggedin)
+        if ($is_loggedin == true) {
             return redirect('/');
         }
 
+        // default values (to view return)
         $error_msg = null;
-
         $username = null;
         $password = null;
         
+        // check if login form submited
         if ($request->has('login-submit')) {
             
+            // get form data
             $username = request('username');
             $password = request('password');
 
+            // check if data is entered
             if ($username == null) {
                 $error_msg = 'you must enter the username';
             } else if ($password == null) {
                 $error_msg = 'you must enter the password';
             }
 
+            // check if error not found
             if ($error_msg == null) {
 
+                // escape form data
                 $username = $this->securityUtil->escapeString($username);
                 $password = $this->securityUtil->escapeString($password);
 
+                // check if user entered correct data
                 if ($this->userManager->canLogin($username, $password)) {
                     
+                    // get user token
                     $token = $this->userManager->getUserToken($username);
 
+                    // set login state
                     $this->userManager->login($token);
 
+                    // redirect to home
                     if ($this->userManager->isLoggedin()) {
                         return redirect('/');
                     }
@@ -61,17 +71,17 @@ class LoginController extends Controller
                 } else {
                     $error_msg = 'incorrect username or password';
                 }
-                
             }
         }
 
         return view('auth/login', [
+            // view state
+            'is_loggedin' => $is_loggedin,
             'error_msg' => $error_msg,
 
+            // from data (auto fill values)
             'username' => $username,
-            'password' => $password,
-
-            'is_loggedin' => $is_loggedin
+            'password' => $password
         ]);
     }
 }

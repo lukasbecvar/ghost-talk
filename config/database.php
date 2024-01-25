@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Str;
 
-return [
+return 
+[
     /*
     |--------------------------------------------------------------------------
     | Default Database Connection Name

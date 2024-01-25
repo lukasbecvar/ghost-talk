@@ -30,7 +30,6 @@ For the maximum anonymity it will be impossible to use any type of email address
    - [X] Home component with information about project
    - [X] Basic user panel (username, basic navigation(logout link))
    - [X] PHPStan code analyze 
-   - [ ] Basic unit tests
 ## Phase - 2
    - [ ] Contact list (store contacts(users))
    - [ ] User search (add to contacts(with verification))

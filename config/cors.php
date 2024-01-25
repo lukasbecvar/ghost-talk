@@ -1,7 +1,7 @@
 <?php
 
-return [
-
+return 
+[
     /*
     |--------------------------------------------------------------------------
     | Cross-Origin Resource Sharing (CORS) Configuration

@@ -13,11 +13,10 @@
             @endif
     
             <!-- login form -->
-            <form action="/login" method="post">
+            <form action="/login" method="post" autocomplete="off">
                 @csrf
-                <input type="text" name="username" placeholder="Username" value="{{ $username }}" class="form-input">
-                <input type="password" name="password" placeholder="Password" value="{{ $password }}" class="form-input">
-    
+                <input type="text" name="username" placeholder="Username" value="{{ $username }}" class="form-input" autocomplete="off">
+                <input type="password" name="password" placeholder="Password" value="{{ $password }}" class="form-input" autocomplete="off">
                 <button type="submit" name="login-submit" class="form-button">Login</button>
             </form>
 

@@ -13,12 +13,11 @@
             @endif
 
             <!-- register form -->
-            <form action="/register" method="post">
+            <form action="/register" method="post" autocomplete="off">
                 @csrf
-                <input type="text" name="username" placeholder="Username" value="{{ $username }}" class="form-input">
-                <input type="password" name="password" placeholder="Password" value="{{ $password }}" class="form-input">
-                <input type="password" name="re-password" placeholder="Password again" value="{{ $re_password }}" class="form-input">
-
+                <input type="text" name="username" placeholder="Username" value="{{ $username }}" class="form-input" autocomplete="off">
+                <input type="password" name="password" placeholder="Password" value="{{ $password }}" class="form-input" autocomplete="off">
+                <input type="password" name="re-password" placeholder="Password again" value="{{ $re_password }}" class="form-input" autocomplete="off">
                 <button type="submit" name="register-submit" class="form-button">Register</button>
             </form>
 

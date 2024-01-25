@@ -2,49 +2,49 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Support\Str;
-use App\Http\Controller;
-use App\Managers\ErrorManager;
-use App\Managers\UserManager;
 use App\Models\User;
+use App\Http\Controller;
 use App\Utils\SecurityUtil;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use App\Managers\UserManager;
+use App\Managers\ErrorManager;
 
 class RegisterController extends Controller
 {
     private UserManager $userManager;
     private SecurityUtil $securityUtil;
-    private ErrorManager $errorManager;
 
-    public function __construct(UserManager $userManager, SecurityUtil $securityUtil, ErrorManager $errorManager)
+    public function __construct(UserManager $userManager, SecurityUtil $securityUtil)
     {
         $this->userManager = $userManager;
         $this->securityUtil = $securityUtil;
-        $this->errorManager = $errorManager;
     }
 
     public function register(Request $request): mixed
     {
+        // get user login state
         $is_loggedin = $this->userManager->isLoggedin();
 
-        if ($is_loggedin) {
+        // redirect to home (if user loggedin)
+        if ($is_loggedin == true) {
             return redirect('/');
         }
 
+        // default values (to view return)
         $error_msg = null;
-
         $username = null;
         $password = null;
         $re_password = null;
         
+        // check if register submited
         if ($request->has('register-submit')) {
 
+            // get form datas
             $username = request('username');
             $password = request('password');
             $re_password = request('re-password');
     
+            // check if data is entered
             if ($username == null) {
                 $error_msg = 'you must enter the username';
             } else if ($password == null) {
@@ -53,15 +53,19 @@ class RegisterController extends Controller
                 $error_msg = 'you must enter the password again';
             }
         
+            // check if error found
             if ($error_msg == null) {
 
+                // escape form data
                 $username = $this->securityUtil->escapeString($username);
                 $password = $this->securityUtil->escapeString($password);
                 $re_password = $this->securityUtil->escapeString($re_password);
 
+                // get data length
                 $username_length = strlen($username);
                 $password_length = strlen($password);
 
+                // check minimal & maximal username or password length
                 if ($username_length < 3) {
                     $error_msg = 'minimal username length is 3 characters';
                 } else if ($username_length > 60) {
@@ -74,55 +78,45 @@ class RegisterController extends Controller
                     $error_msg = 'your passwords is not match';
                 }
 
+                // init user entity
                 $user = new User();
+
+                // get user data by username
                 $user_data = $user->where('username', $username)->first();
                 
+                // check if username is already used
                 if ($user_data !== null) {
                     $error_msg = 'this username is already used, please use another name';
                 }
                 
-                $password_hash = Hash::make($password);
-
-                $token = Str::random(30);
-
-                // Check if the token already exists in the database
-                while (User::where('token', $token)->exists()) {
-                    // Regenerate the token if it already exists
-                    $token = Str::random(30);
-                }
-
-
+                // check if error message found (if register is allowed)
                 if ($error_msg == null) {
-                    
-                    try {
-                        $user->setUsername($username);
-                        $user->setPassword($password_hash);
-                        $user->setToken($token);
-                        $user->setStatus('active');
-                        
-                        $user->save();
+                    $token = $this->userManager->register($username, $password);
+                
+                    // check if register is valid
+                    if ($token != null) {
 
+                        // set login state
                         $this->userManager->login($token);
 
-                        if ($this->userManager->isLoggedin()) {
-                            return redirect('/');
-                        }
-
-                    } catch(\Exception $e) {
-                        $this->errorManager->handleError(500, 'Error to insert new user data: '.$e->getMessage());
+                        // redirect to the main route
+                        return redirect('/'); 
+                    } else {
+                        $error_msg = 'unexpected login error, please try contact your admin on: '.$_ENV['CONTACT_EMAIL'];
                     }
                 }
             }
-        } 
+        }
 
         return view('auth/register', [
+            // view state
             'error_msg' => $error_msg,
+            'is_loggedin' => $is_loggedin,
 
+            // from data (auto fill values)
             'username' => $username,
             'password' => $password,
-            're_password' => $re_password,
-
-            'is_loggedin' => $is_loggedin
+            're_password' => $re_password
         ]);
     }
 }

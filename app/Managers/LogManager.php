@@ -18,9 +18,11 @@ class LogManager
 
     public function saveLog(string $name, string $value): void
     {
+        // init log entity
         $log = new Log();
 
         try {
+            // escape log data
             $name = $this->securityUtil->escapeString($name);
             $value = $this->securityUtil->escapeString($value);
         
@@ -29,13 +31,15 @@ class LogManager
                 $value = mb_substr($value, 0, 200 - 3).'...';
             }
 
+            // set log item values
             $log->setName($name);
             $log->setValue($value);
             $log->setStatus('non-readed');
 
+            // save log to database
             $log->save();
         } catch(\Exception $e) {
-            $this->errorManager->handleError(500, 'error to save log: '.$e->getMessage());
+            $this->errorManager->handleError('error to save log: '.$e->getMessage(), 500);
         }
     }
 

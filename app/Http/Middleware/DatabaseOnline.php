@@ -2,30 +2,29 @@
 
 namespace App\Http\Middleware;
 
-use App\Managers\ErrorManager;
 use Closure;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\DatabaseManager;
 use Illuminate\Http\Request;
+use App\Managers\ErrorManager;
+use Illuminate\Database\DatabaseManager;
 
 class DatabaseOnline
 {
     private ErrorManager $errorManager;
-    private DatabaseManager $db;
+    private DatabaseManager $databaseManager;
 
-    public function __construct(ErrorManager $errorManager, DatabaseManager $db)
+    public function __construct(ErrorManager $errorManager, DatabaseManager $databaseManager)
     {
         $this->errorManager = $errorManager;
-        $this->db = $db;
+        $this->databaseManager = $databaseManager;
     }
 
     public function handle(Request $request, Closure $next): mixed
     {
         try {
-            $this->db->connection()->getPdo();
-
+            // get pdo connection
+            $this->databaseManager->connection()->getPdo();
         } catch (\Exception $e) {
-            $this->errorManager->handleError(500, 'Database error: '.$e->getMessage());
+            $this->errorManager->handleError('Database error: '.$e->getMessage(), 500);
         }
 
         return $next($request);

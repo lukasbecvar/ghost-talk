@@ -37,15 +37,15 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
+            // Illuminate middlewares
+            \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            
             // app middlewares
             \App\Http\Middleware\EncryptCookies::class,
-            \App\Http\Middleware\VerifyCsrfToken::class,
-            
-            // Illuminate middlewares
-            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \Illuminate\Session\Middleware\StartSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class
         ],
     ];
 
@@ -57,9 +57,9 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
-        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
-        'precognitive' => \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'precognitive' => \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
     ];
 }

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controller;
-use App\Managers\ErrorManager;
-use App\Managers\UserManager;
 use App\Utils\SessionUtil;
+use App\Managers\UserManager;
+use App\Managers\ErrorManager;
 use Illuminate\Http\RedirectResponse;
 
 class LogoutController extends Controller
@@ -24,13 +24,15 @@ class LogoutController extends Controller
     public function logout(): RedirectResponse
     {
         try {
+            // logout user (if logged in)
             if ($this->userManager->isLoggedin()) {
                 $this->sessionUtil->destroySession();
             }
         } catch (\Exception $e) {
-            $this->errorManager->handleError(500, 'logout error: '.$e->getMessage());
+            $this->errorManager->handleError('logout error: '.$e->getMessage(), 500);
         }
 
+        // redirect back to login page
         return redirect('/login');
     }
 }

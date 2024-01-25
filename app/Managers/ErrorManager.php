@@ -16,25 +16,27 @@ class ErrorManager
         $this->siteUtil = $siteUtil;
     }
 
-    public function handleError(int $code, string $message): void 
+    public function handleError(string $message, int $code): void 
     {
+        // build error response
         $error_json = [
             'status' => 'error',
             'code' => $code,
             'message' => $message
         ];
 
+        // check if devmode is enabled
         if ($this->siteUtil->isDevMode()) {
+            // die app & return error json
             die(json_encode($error_json));
         } else {
+            // handle error page (for non debug session)
             $this->handleErrorView($code);
         }
     }
 
     public function handleErrorView(int $code): void
     {
-        $viewContent = $this->view->make('error/error_'.$code)->render();
-
-        echo $viewContent;
+        echo $this->view->make('error/error_'.$code)->render();;
     }
 }

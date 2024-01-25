@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Str;
 
-return [
-
+return 
+[
     /*
     |--------------------------------------------------------------------------
     | Default Cache Store

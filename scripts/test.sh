@@ -11,4 +11,3 @@ php vendor/bin/phpstan analyze
 # PHPUnit run tests
 yellow_echo 'PHPUnit: testing...'
 php artisan test
-

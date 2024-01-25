@@ -23,9 +23,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/error/{code}', [ErrorController::class, 'handleError']);
 
 // auth routes
+Route::get('/logout', [LogoutController::class, 'logout']);
 Route::match(['get', 'post'], '/login', [LoginController::class, 'login']);
 Route::match(['get', 'post'], '/register', [RegisterController::class, 'register']);
-Route::get('/logout', [LogoutController::class, 'logout']);
 
 // main home controller
 Route::get('/', [HomeController::class, 'homePage']);
