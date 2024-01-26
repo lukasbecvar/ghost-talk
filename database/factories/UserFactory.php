@@ -11,7 +11,7 @@ class UserFactory extends Factory
     {
         return [
             'username' => $this->faker->unique()->userName,
-            'password' => bcrypt('password'), // You can customize this as needed
+            'password' => bcrypt('password'),
             'token' => Str::random(10),
             'status' => 'active',
         ];

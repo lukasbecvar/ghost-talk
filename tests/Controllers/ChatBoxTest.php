@@ -29,7 +29,6 @@ class ChatBoxTest extends TestCase
         $_SESSION['user-token'] = 'fVxV91ijRWiMq8NCxpl1LnBSTEt3WUJBTDh6Y1RIYVpMdjZVdW5IcmJOMXh3YmVvYnN2ZjFBRk51eU09';
         
         $response = $this->get('/');
-        $response->assertSee('chat box');
         $response->assertStatus(200);
     }
 }

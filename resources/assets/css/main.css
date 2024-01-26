@@ -1,4 +1,4 @@
-/* ghost talk app style */
+/* ghost talk app style */ 
 body {
     font-family: 'Arial', sans-serif;
     background-color: #282c34;
@@ -168,4 +168,130 @@ body {
 
 .registration-link a:hover {
     text-decoration: underline;
+}
+
+.chat-component {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: calc(100vh - 40px);
+    margin-top: -21px;
+}
+
+.chat-list {
+    width: 25%;
+    overflow-y: auto;
+    box-sizing: border-box;
+    border-right: 1px solid white;
+}
+
+.chat-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.chat-list a {
+    background-color: #383d46;
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s;
+    border-bottom: 1px solid white;
+    white-space: nowrap;
+}
+
+.chat-list a:hover {
+    background-color: #505661;
+}
+
+.chat-box {
+    flex: 1;
+    box-sizing: border-box;
+    padding: 5px;
+    overflow-y: auto;
+    position: relative;
+}
+
+.message-container {
+    overflow-y: auto;
+    height: calc(100% - 40px);
+    margin-bottom: 10px;
+}
+
+.message {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 5px;
+    width: 97.5%;
+}
+
+.incoming {
+    background-color: #193fe7;
+}
+
+.outgoing {
+    background-color: #525252;
+}
+
+.timestamp {
+    float: right;
+    color: rgb(209, 209, 209);
+    font-size: 15px;
+}
+
+.title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.username {
+    text-decoration: underline;
+}
+
+.message-input-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    padding-right: 5px;
+    box-sizing: border-box;
+}
+
+.message-input {
+    flex: 1;
+    padding: 9px;
+    border: 1px solid #ccc;
+    margin-right: 4px;
+}
+
+.send-button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.contact-list-navbar {
+    border-bottom: 1px solid white;
+    background-color: #383d46;
+    margin-left: 1px;
+}
+
+.contact-list-navbar a {
+    color: #61dafb;
+    padding: 2px;
+}
+
+.contact-list-navbar a:hover {
+    color: #2fd2ff;
+    padding: 2px;
 }
