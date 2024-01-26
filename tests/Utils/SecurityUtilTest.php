@@ -41,7 +41,7 @@ class SecurityUtilTest extends TestCase
 
         // test generating bcrypt hash
         $plainText = 'password123';
-        $cost = 12; // You can adjust the cost based on your requirements
+        $cost = 12;
         $hash = $securityUtil->genBcryptHash($plainText, $cost);
 
         // ensure the generated hash is valid

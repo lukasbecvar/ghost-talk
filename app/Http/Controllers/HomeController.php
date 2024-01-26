@@ -22,7 +22,7 @@ class HomeController extends Controller
         
         // check if user logged in
         if ($is_loggedin == true) {
-            
+               
             // get username
             $username = $this->userManager->getLoggedUsername();
             
