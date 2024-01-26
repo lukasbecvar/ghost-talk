@@ -9,8 +9,8 @@
         <testsuite name="Auth">
             <directory>tests/Auth</directory>
         </testsuite>
-        <testsuite name="Feature">
-            <directory>tests/Feature</directory>
+        <testsuite name="Controllers">
+            <directory>tests/Controllers</directory>
         </testsuite>
         <testsuite name="Utils">
             <directory>tests/Utils</directory>
