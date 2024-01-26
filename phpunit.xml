@@ -6,6 +6,9 @@
          cacheResult="false"
 >
     <testsuites>
+        <testsuite name="Auth">
+            <directory>tests/Auth</directory>
+        </testsuite>
         <testsuite name="Feature">
             <directory>tests/Feature</directory>
         </testsuite>

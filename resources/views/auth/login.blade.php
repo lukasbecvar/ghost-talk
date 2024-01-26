@@ -5,7 +5,9 @@
         <div class="form-container">
             <h1 class="form-title">login</h1>
     
-            @include('sub-components.error-message-box')
+            @if ($error_msg)            
+                @include('sub-components.error-message-box')
+            @endif
     
             <!-- login form -->
             <form action="/login" method="post" autocomplete="off">

@@ -5,7 +5,9 @@
         <div class="form-container">
             <h1 class="form-title">registration</h1>
             
-            @include('sub-components.error-message-box')
+            @if ($error_msg)    
+                @include('sub-components.error-message-box')
+            @endif
 
             <!-- register form -->
             <form action="/register" method="post" autocomplete="off">
