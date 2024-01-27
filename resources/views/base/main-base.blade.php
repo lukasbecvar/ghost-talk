@@ -10,6 +10,11 @@
     <title>Ghost Talk</title>
 </head>
 <body>
+
+    <noscript>
+        <meta http-equiv="refresh" content="0;url=/error/nojs">
+    </noscript>
+    
     <!-- navigation component-->
     @include('sub-components.navigation')
 
