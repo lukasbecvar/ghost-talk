@@ -20,6 +20,20 @@ class ChatBoxTest extends TestCase
                 'role' => 'user'
             ]
         );
+
+        // start session (simulate auth)
+        if (session_status() == PHP_SESSION_NONE) {
+            if (!headers_sent()) {
+                session_start();
+            }
+        }
+    }
+
+    public function tearDown(): void
+    {
+        // destory testing session
+        session_destroy();
+        parent::tearDown();
     }
 
     public function test_chat_box(): void
@@ -28,7 +42,7 @@ class ChatBoxTest extends TestCase
         $_SESSION['user-token'] = 'fVxV91ijRWiMq8NCxpl1LnBSTEt3WUJBTDh6Y1RIYVpMdjZVdW5IcmJOMXh3YmVvYnN2ZjFBRk51eU09';
         
         $response = $this->get('/');
+        
         $response->assertStatus(200);
-        session_destroy();
     }
 }
