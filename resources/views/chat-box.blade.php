@@ -5,7 +5,7 @@
     <div class="chat-list">
         <ul>
             <div class="contact-list-navbar">
-                <a href="/search/contact">Search contacts</a>
+                <a href="/contact/search">Search contacts</a>
                 <a href="/pending/list">Pending [0]</a>
             </div>
 

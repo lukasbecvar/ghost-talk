@@ -12,8 +12,9 @@ class UserFactory extends Factory
         return [
             'username' => $this->faker->unique()->userName,
             'password' => bcrypt('password'),
-            'token' => Str::random(10),
+            'token' => Str::random(30),
             'status' => 'active',
+            'status' => 'role'
         ];
     }
 }

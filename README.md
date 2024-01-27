@@ -33,7 +33,7 @@ For the maximum anonymity it will be impossible to use any type of email address
 ## Phase - 2
    - [X] Chatbox layout
    - [X] Contact list (store contacts(users))
-   - [ ] User search 
+   - [X] User search 
    - [ ] Profile viewer 
    - [ ] Add to contacts in profile viewer(with verification)
    - [ ] Pending users list (accept or decline)

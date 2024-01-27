@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ContactSearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,3 +34,7 @@ Route::get('/home', [HomeController::class, 'homePage']);
 
 // sub components
 Route::get('/about', [AboutController::class, 'aboutPage']);
+
+// search contact component
+Route::get('/contact/search', [ContactSearchController::class, 'searchContact']);
+Route::post('/contact/search', [ContactSearchController::class, 'searchContact']);

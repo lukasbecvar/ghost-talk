@@ -9,7 +9,7 @@ class User extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['username', 'password', 'token', 'status'];
+    protected $fillable = ['username', 'password', 'token', 'status', 'role'];
 
     public function getID(): string
     {
@@ -54,5 +54,15 @@ class User extends Model
     public function setStatus(string $status): void
     {
         $this->attributes['status'] = $status;
+    }
+
+    public function getRole(): string
+    {
+        return $this->attributes['role'];
+    }
+
+    public function setRole(string $role): void
+    {
+        $this->attributes['role'] = $role;
     }
 }

@@ -16,7 +16,8 @@ class LoginTest extends TestCase
             [
                 'password' => bcrypt('testing-password'),
                 'token' => 'ujGSyQbkVsRR3xGHAlbwYns3qcRvyF',
-                'status' => 'active'
+                'status' => 'active',
+                'role' => 'user'
             ]
         );
     }

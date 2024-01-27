@@ -25,7 +25,7 @@ class LoginController extends Controller
 
         // redirect to home (if user loggedin)
         if ($is_loggedin == true) {
-            return redirect('/');
+            return redirect('/'); 
         }
 
         // default values (to view return)

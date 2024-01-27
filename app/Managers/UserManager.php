@@ -41,6 +41,7 @@ class UserManager
             $user->setPassword($password_hash);
             $user->setToken($token);
             $user->setStatus('active');
+            $user->setRole('user');
                      
             // save user data to the database
             $user->save();
@@ -140,6 +141,21 @@ class UserManager
             return $user_data->getUsername();
         } else {
             return null;
+        }
+    }
+
+    public function isUserExist(string $username): bool
+    {
+        $user = new User();
+
+        // get user data
+        $user_data = $user->where('username', $username)->first();
+    
+        // check if user exist
+        if ($user_data == null) {
+            return false;
+        } else {
+            return true;
         }
     }
 }
