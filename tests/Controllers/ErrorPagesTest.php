@@ -4,7 +4,7 @@ namespace Tests\Controllers;
 
 use Tests\TestCase;
 
-class CustomErrorPagesTest extends TestCase
+class ErrorPagesTest extends TestCase
 {
     public function test_error_400(): void
     {
@@ -52,10 +52,18 @@ class CustomErrorPagesTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_error_unknown(): void
+    public function test_error_nojs(): void
     {
         $response = $this->get('/error/unknown');
         $response->assertSeeText('Unknown error, please contact the service administrator');
+        $response->assertStatus(200);
+    }
+
+    public function test_error_unknown(): void
+    {
+        $response = $this->get('/error/nojs');
+        $response->assertSeeText('Please enabled javascript in your browser');
+        $response->assertSeeText('Ghost talk require javascript functions only for dynamic update chat');
         $response->assertStatus(200);
     }
 }
