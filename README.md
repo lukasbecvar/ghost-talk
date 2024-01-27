@@ -35,7 +35,6 @@ For the maximum anonymity it will be impossible to use any type of email address
    - [X] Contact list (store contacts(users))
    - [X] User search 
    - [X] Profile viewer 
-   - [ ] User search, Profile viewer tests
    - [ ] Add to contacts in profile viewer
    - [ ] Pending users list (accept or decline)
    - [ ] Chat list component
