@@ -77,14 +77,8 @@ class RegisterController extends Controller
                     $error_msg = 'your passwords is not match';
                 }
 
-                // init user entity
-                $user = new User();
-
-                // get user data by username
-                $user_data = $user->where('username', $username)->first();
-                
                 // check if username is already used
-                if ($user_data !== null) {
+                if ($this->userManager->isUserExist($username)) {
                     $error_msg = 'this username is already used, please use another name';
                 }
                 

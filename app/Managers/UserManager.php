@@ -57,21 +57,13 @@ class UserManager
 
     public function getUserToken(string $username): ?string
     {
-        $user = new User();
-
-        // get user data
-        $user_data = $user->where('username', $username)->first(); 
-
-        // return token
-        return $user_data->getToken();
+        return $this->getUserData('username', $username)->getToken();
     }
 
     public function checkIsTokenExist(string $token): bool
     {
-        $user = new User();
-
         // get user data
-        $user_data = $user->where('token', $token)->first(); 
+        $user_data = $this->getUserData('token', $token);
 
         // check if user with token exist in database
         if ($user_data == null) {
@@ -102,10 +94,8 @@ class UserManager
 
     public function canLogin(string $username, string $password): bool
     {
-        $user = new User();
-
         // get user data
-        $user_data = $user->where('username', $username)->first();
+        $user_data = $this->getUserData('username', $username);
 
         // check if user exist
         if ($user_data == null) {
@@ -127,18 +117,13 @@ class UserManager
 
     public function getLoggedUsername(): ?string
     {
-        $user = new User();
-
         // check if user si logged
         if ($this->isLoggedin()) {
             // get user token (from session)
             $token = $this->sessionUtil->getSessionValue('user-token');
 
             // get user data
-            $user_data = $user->where('token', $token)->first(); 
-    
-            // get username
-            return $user_data->getUsername();
+            return $this->getUserData('token', $token)->getUsername();
         } else {
             return null;
         }
@@ -146,10 +131,8 @@ class UserManager
 
     public function isUserExist(string $username): bool
     {
-        $user = new User();
-
         // get user data
-        $user_data = $user->where('username', $username)->first();
+        $user_data = $this->getUserData('username', $username);
     
         // check if user exist
         if ($user_data == null) {
@@ -157,5 +140,16 @@ class UserManager
         } else {
             return true;
         }
+    }
+
+    /**
+     * @param string $where
+     * @param string $value
+     * @return \App\Models\User|null
+     */
+    public function getUserData(string $where, string $value): ?object 
+    {
+        $user = new User();
+        return $user->where($where, $value)->first();
     }
 }

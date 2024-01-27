@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ContactSearchController;
+use App\Http\Controllers\ProfileViewerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +39,7 @@ Route::get('/about', [AboutController::class, 'aboutPage']);
 // search contact component
 Route::get('/contact/search', [ContactSearchController::class, 'searchContact']);
 Route::post('/contact/search', [ContactSearchController::class, 'searchContact']);
+
+// profile viewer
+Route::get('/profile', [ProfileViewerController::class, 'profileViewer']);
+Route::post('/profile', [ProfileViewerController::class, 'profileViewer']);

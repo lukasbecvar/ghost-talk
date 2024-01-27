@@ -297,3 +297,64 @@ body {
     color: #2fd2ff;
     padding: 2px;
 }
+
+.profile-box {
+    border-bottom: 1px solid white;
+    background-color: #383d46;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+}
+
+.profile-info {
+    margin-bottom: 15px;
+}
+
+.label {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.value {
+    color: #e2e2e2;
+}
+
+.add-to-contact-btn {
+    background-color: #40b944;
+    color: #eeeeee;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-contact-btn:hover {
+    background-color: #45a049;
+}
+
+.block-contact-btn {
+    background-color: rgb(255, 100, 100);
+}
+
+.block-contact-btn:hover {
+    background-color: rgb(255, 79, 79);
+}
+
+.green-text {
+    color: rgb(54, 235, 54);
+}
+
+.gold-text {
+    color: rgb(255, 226, 61);
+}
+
+.red-text {
+    color: rgb(255, 69, 69);
+}
+
+.black-text {
+    color: black;
+}

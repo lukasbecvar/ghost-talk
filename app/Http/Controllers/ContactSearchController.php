@@ -6,7 +6,6 @@ use App\Http\Controller;
 use App\Utils\SecurityUtil;
 use Illuminate\Http\Request;
 use App\Managers\UserManager;
-use Illuminate\Contracts\View\View;
 
 class ContactSearchController extends Controller
 {
@@ -19,7 +18,7 @@ class ContactSearchController extends Controller
         $this->securityUtil = $securityUtil;
     }
 
-    public function searchContact(Request $request): View
+    public function searchContact(Request $request): mixed
     {   
         // get login state
         $is_loggedin = $this->userManager->isLoggedin();
@@ -52,7 +51,7 @@ class ContactSearchController extends Controller
 
                     // check if user found in database
                     if ($this->userManager->isUserExist($username_input)) {
-                        dd($username_input);
+                        return redirect('profile?name='.$username_input);
                     } else {
                         $error_msg = $username_input.' is not registred in system, check if your input correct!';
                     }  

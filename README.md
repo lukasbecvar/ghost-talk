@@ -34,8 +34,10 @@ For the maximum anonymity it will be impossible to use any type of email address
    - [X] Chatbox layout
    - [X] Contact list (store contacts(users))
    - [X] User search 
-   - [ ] Profile viewer 
-   - [ ] Add to contacts in profile viewer(with verification)
+   - [X] Profile viewer 
+   - [ ] Log nojs and position error
+   - [ ] User search, Profile viewer tests
+   - [ ] Add to contacts in profile viewer
    - [ ] Pending users list (accept or decline)
    - [ ] Chat list component
 ## Phase - 3
