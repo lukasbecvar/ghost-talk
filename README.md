@@ -38,6 +38,7 @@ For the maximum anonymity it will be impossible to use any type of email address
    - [ ] Chat list component
 ## Phase - 3
    - [ ] Main chat component with
+   - [ ] Global chat (for all users in app)
    - [ ] Highlight url links in messages
    - [ ] User settings (change password, deactivate account, delete all chats)
 ## Phase - 4

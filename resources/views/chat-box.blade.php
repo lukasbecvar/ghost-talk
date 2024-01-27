@@ -1,11 +1,12 @@
-@extends('base.main-base')
+@extends('base.main-base') 
 
 @section('content')
 <div class="chat-component">
     <div class="chat-list">
         <ul>
             <div class="contact-list-navbar">
-                <a href="#">Search contacts</a>
+                <a href="/search/contact">Search contacts</a>
+                <a href="/pending/list">Pending [0]</a>
             </div>
 
 
