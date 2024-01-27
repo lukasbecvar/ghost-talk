@@ -37,9 +37,11 @@ For the maximum anonymity it will be impossible to use any type of email address
    - [X] Profile viewer 
    - [ ] Add to contacts in profile viewer
    - [ ] Pending users list (accept or decline)
+   - [ ] Self add & block prevention
    - [ ] Chat list component
 ## Phase - 3
    - [ ] Main chat component with
+   - [ ] User block system
    - [ ] Global chat (for all users in app)
    - [ ] Highlight url links in messages
    - [ ] User settings (change password, deactivate account, delete all chats)
