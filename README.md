@@ -33,8 +33,10 @@ For the maximum anonymity it will be impossible to use any type of email address
 ## Phase - 2
    - [X] Chatbox layout
    - [X] Contact list (store contacts(users))
-   - [ ] User search (add to contacts(with verification))
-   - [ ] Pending users list (contact list component)
+   - [ ] User search 
+   - [ ] Profile viewer 
+   - [ ] Add to contacts in profile viewer(with verification)
+   - [ ] Pending users list (accept or decline)
    - [ ] Chat list component
 ## Phase - 3
    - [ ] Main chat component with
