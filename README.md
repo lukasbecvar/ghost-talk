@@ -33,6 +33,7 @@ For the maximum anonymity it will be impossible to use any type of email address
 ## Phase - 2
    - [X] Chatbox layout
    - [X] Contact list (store contacts(users))
+   - [ ] Check if js enabled in browser
    - [ ] User search (add to contacts(with verification))
    - [ ] Pending users list (contact list component)
    - [ ] Chat list component

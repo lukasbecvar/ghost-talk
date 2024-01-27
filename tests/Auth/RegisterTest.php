@@ -3,13 +3,10 @@
 namespace Tests\Auth;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
 
 class RegisterTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
-
     public function test_register(): void
     {
         $response = $this->get('/register');
@@ -34,7 +31,7 @@ class RegisterTest extends TestCase
     {
         $response = $this->post('/register', [
             'register-submit' => true,
-            'username' => 'testing-user'
+            'username' => Str::random(10)
         ]);
 
         $response->assertSee('registration');
@@ -46,7 +43,7 @@ class RegisterTest extends TestCase
     {
         $response = $this->post('/register', [
             'register-submit' => true,
-            'username' => 'testing-user',
+            'username' => Str::random(10),
             'password' => 'testing-password'
         ]);
 
@@ -87,7 +84,7 @@ class RegisterTest extends TestCase
     {
         $response = $this->post('/register', [
             'register-submit' => true,
-            'username' => 'testing-user',
+            'username' => Str::random(10),
             'password' => 'testing-password',
             're-password' => 'testing-idk'
         ]);
@@ -101,7 +98,7 @@ class RegisterTest extends TestCase
     {
         $response = $this->post('/register', [
             'register-submit' => true,
-            'username' => 'testing-user',
+            'username' => '(phpunit)-'.Str::random(10),
             'password' => 'testing-password',
             're-password' => 'testing-password'
         ]);

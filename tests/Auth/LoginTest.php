@@ -4,23 +4,21 @@ namespace Tests\Auth;
 
 use Tests\TestCase;
 use App\Models\User;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LoginTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
-
     public function setUp(): void
     {
         parent::setUp();
 
-        User::factory()->create([
-            'username' => 'testing-user',
-            'password' => bcrypt('testing-password'),
-            'token' => 'ujGSyQbkVsRR3xGHAlbwYns3qcRvyF',
-            'status' => 'active'
-        ]);
+        User::firstOrCreate(
+            ['username' => '(phpunit)-user'],
+            [
+                'password' => bcrypt('testing-password'),
+                'token' => 'ujGSyQbkVsRR3xGHAlbwYns3qcRvyF',
+                'status' => 'active'
+            ]
+        );
     }
 
     public function test_login_page(): void
@@ -47,7 +45,7 @@ class LoginTest extends TestCase
     {
         $response = $this->post('/login', [
             'login-submit' => true,
-            'username' => 'testing-user'
+            'username' => '(phpunit)-user'
         ]);
 
         $response->assertSee('login');
@@ -59,7 +57,7 @@ class LoginTest extends TestCase
     {
         $response = $this->post('/login', [
             'login-submit' => true,
-            'username' => 'testing-user',
+            'username' => '(phpunit)-user',
             'password' => 'incorrect-password'
         ]);
 
@@ -72,7 +70,7 @@ class LoginTest extends TestCase
     {
         $response = $this->post('/login', [
             'login-submit' => true,
-            'username' => 'testing-user',
+            'username' => '(phpunit)-user',
             'password' => 'testing-password'
         ]);
 
