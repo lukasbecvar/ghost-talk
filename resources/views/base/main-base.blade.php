@@ -10,6 +10,25 @@
     <title>Ghost Talk</title>
 </head>
 <body>
+    <script>
+        function isHeightPosition() {
+            return window.orientation === 0 || window.orientation === 180;
+        }
+
+        function redirectIfHeightPosition() {
+            if (isHeightPosition()) {
+                // redirect users in height position to the error page
+                window.location.href = "/error/position";
+            }
+        }
+
+        // check orientation on page load
+        window.onload = redirectIfHeightPosition;
+
+        // listen for orientation changes
+        window.addEventListener("orientationchange", redirectIfHeightPosition);
+    </script>
+
     <noscript>
         <meta http-equiv="refresh" content="0;url=/error/nojs">
     </noscript>

@@ -281,6 +281,8 @@ body {
 }
 
 .contact-list-navbar {
+    display: flex;
+    justify-content: space-between;
     border-bottom: 1px solid white;
     background-color: #383d46;
     margin-left: 1px;

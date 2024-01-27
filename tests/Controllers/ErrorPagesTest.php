@@ -52,18 +52,25 @@ class ErrorPagesTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_error_nojs(): void
-    {
-        $response = $this->get('/error/unknown');
-        $response->assertSeeText('Unknown error, please contact the service administrator');
-        $response->assertStatus(200);
-    }
-
     public function test_error_unknown(): void
     {
         $response = $this->get('/error/nojs');
         $response->assertSeeText('Please enabled javascript in your browser');
         $response->assertSeeText('Ghost talk require javascript functions only for dynamic update chat');
+        $response->assertStatus(200);
+    }
+    
+    public function test_error_position(): void
+    {
+        $response = $this->get('/error/position');
+        $response->assertSeeText('Sorry, your device is currently in an unsupported position. To access this feature, please rotate your device to landscape mode or use a device with a wider screen');
+        $response->assertStatus(200);
+    }
+
+    public function test_error_nojs(): void
+    {
+        $response = $this->get('/error/unknown');
+        $response->assertSeeText('Unknown error, please contact the service administrator');
         $response->assertStatus(200);
     }
 }
