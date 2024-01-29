@@ -41,10 +41,10 @@ For the maximum anonymity it will be impossible to use any type of email address
 ## Phase - 3
    - [ ] Main chat component with
    - [ ] User block system (block/unblock (button in profile viewer))
-   - [ ] Global chat (for all users in app)
    - [ ] Highlight url links in messages
-   - [ ] User settings (change password, deactivate account, delete all chats)
 ## Phase - 4
+   - [ ] User settings (change password, deactivate account, delete all chats)
+   - [ ] Global chat (for all users in app)
    - [ ] Photo & video share in chat
    - [ ] File share in chat
 ## Phase - 5
