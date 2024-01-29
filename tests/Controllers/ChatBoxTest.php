@@ -43,6 +43,12 @@ class ChatBoxTest extends TestCase
         
         $response = $this->get('/');
         
+        $response->assertSee('Home');
+        $response->assertSee('About');
+        $response->assertSee('(phpunit)-user');
+        $response->assertSee('Logout');
+        $response->assertSee('Pending');
+        $response->assertSee('Search contacts');
         $response->assertStatus(200);
     }
 }

@@ -38,6 +38,7 @@ For the maximum anonymity it will be impossible to use any type of email address
    - [X] Add to contacts in profile viewer
    - [X] Pending users list (accept or decline)
    - [X] Chat list component
+   - [ ] Refactor
 ## Phase - 3
    - [ ] Main chat component with
    - [ ] User block system (block/unblock (button in profile viewer))
