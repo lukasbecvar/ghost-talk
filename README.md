@@ -36,8 +36,8 @@ For the maximum anonymity it will be impossible to use any type of email address
    - [X] User search 
    - [X] Profile viewer 
    - [X] Add to contacts in profile viewer
-   - [ ] Pending users list (accept or decline)
-   - [ ] Chat list component
+   - [X] Pending users list (accept or decline)
+   - [X] Chat list component
 ## Phase - 3
    - [ ] Main chat component with
    - [ ] User block system (block/unblock (button in profile viewer))
@@ -48,6 +48,7 @@ For the maximum anonymity it will be impossible to use any type of email address
    - [ ] Photo & video share in chat
    - [ ] File share in chat
 ## Phase - 5
+   - [ ] Remove landscape mode only and create mobile responsive style
    - [ ] Chat history encryption (! important !)
    - [ ] Admin system
 

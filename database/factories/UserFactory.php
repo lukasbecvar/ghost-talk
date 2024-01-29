@@ -14,7 +14,7 @@ class UserFactory extends Factory
             'password' => bcrypt('password'),
             'token' => Str::random(30),
             'status' => 'active',
-            'status' => 'role'
+            'role' => 'user'
         ];
     }
 }

@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Chat extends Model
+class Connection extends Model
 {
-    protected $fillable = ['users', 'status'];
+    protected $fillable = ['users', 'sender', 'status'];
 
     protected $casts = [
         'users' => 'json',
@@ -27,6 +27,16 @@ class Chat extends Model
         return json_decode($this->attributes['users'], true);
     }
     
+    public function setSender(string $value): void
+    {
+        $this->attributes['sender'] = trim($value);
+    }
+
+    public function getSender(): string
+    {
+        return $this->attributes['sender'];
+    }
+
     public function setStatus(string $value): void
     {
         $this->attributes['status'] = trim($value);

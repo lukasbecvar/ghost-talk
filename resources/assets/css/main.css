@@ -8,6 +8,12 @@ body {
     box-sizing: border-box;
 }
 
+.page-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
 .m-r-3 {
     margin-right: 3px;
 }
@@ -362,4 +368,47 @@ body {
 
 .waiting {
     font-size: 16px;
+}
+
+.pending-component div {
+    display: flex;
+    align-items: center;
+    background-color: #383d46;
+    width: 80%;
+    padding: 5px;
+    justify-content: space-between;
+    border-bottom: 1px solid white;
+}
+
+.pending-component p {
+    margin: 0;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.pending-component .buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pending-component .username {
+    margin-right: auto;
+}
+
+.pending-component a {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 3px;
+}
+
+.pending-component a.accept {
+    background-color: #4CAF50; 
+}
+
+.pending-component a.deny {
+    background-color: #f44336;
 }

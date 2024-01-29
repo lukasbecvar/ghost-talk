@@ -4,12 +4,13 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ChatFactory extends Factory
+class ConnectionFactory extends Factory
 {
     public function definition()
     {
         return [
-            'users' => [$this->faker->userName, $this->faker->userName],
+            'users' => [$this->faker->userName, 'lordbecvold'],
+            'sender' => 'lordbecvold',
             'status' => 'active'
         ];
     }

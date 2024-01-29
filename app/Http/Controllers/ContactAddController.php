@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controller;
 use App\Managers\UserManager;
 use App\Managers\ErrorManager;
-use App\Managers\ContactManager;
+use App\Managers\ConnectionManager;
 use App\Utils\SecurityUtil;
 
 class ContactAddController extends Controller
@@ -13,14 +13,14 @@ class ContactAddController extends Controller
     private UserManager $userManager;
     private SecurityUtil $securityUtil;
     private ErrorManager $errorManager;
-    private ContactManager $contactManager;
+    private ConnectionManager $connectionManager;
 
-    public function __construct(UserManager $userManager, SecurityUtil $securityUtil, ErrorManager $errorManager, ContactManager $contactManager)
+    public function __construct(UserManager $userManager, SecurityUtil $securityUtil, ErrorManager $errorManager, ConnectionManager $connectionManager)
     {
         $this->userManager = $userManager;
         $this->securityUtil = $securityUtil;
         $this->errorManager = $errorManager;
-        $this->contactManager = $contactManager;
+        $this->connectionManager = $connectionManager;
     }
         
     public function contactAdd(): mixed
@@ -45,10 +45,10 @@ class ContactAddController extends Controller
                 $this->errorManager->handleError($username.' not exist in database', 400);
             }
             
-            $connection_status = $this->contactManager->getConnectionStatus($logged_username, $username);
+            $connection_status = $this->connectionManager->getConnectionStatus($logged_username, $username);
 
             if ($connection_status == null) {
-                $this->contactManager->addContact($username);
+                $this->connectionManager->addContact($username);
                 return redirect('/profile?name='.$username);
             } else {
                 return view('error/error-custom', ['error_msg' => 'This connection status is already '.$connection_status]);
