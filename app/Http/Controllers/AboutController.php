@@ -21,7 +21,7 @@ class AboutController extends Controller
         $is_loggedin = $this->userManager->isLoggedin();
         $username = $this->userManager->getLoggedUsername();
 
-        return view('about', [
+        return view('components/about', [
             // view state
             'is_loggedin' => $is_loggedin,
             'username' => $username

@@ -20,6 +20,11 @@ class ErrorController extends Controller
         // log error page handle
         $this->logManager->saveLog('handle error page', 'error: '.$code);
         
+        // block show custom error by error route
+        if ($code == 'custom') {
+            $code = 'unknown';
+        }
+
         try {
             // handle error view by code
             return view('error/error-'.$code);

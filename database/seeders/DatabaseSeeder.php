@@ -8,7 +8,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        // call other seeders here
         $this->call(UserSeeder::class);
+        $this->call(ChatSeeder::class);
     }
 }

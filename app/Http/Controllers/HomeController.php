@@ -27,14 +27,14 @@ class HomeController extends Controller
             $username = $this->userManager->getLoggedUsername();
             
             // return main chat box (main component for logged-in users)
-            return view('chat-box', [
+            return view('components/chat-box', [
                 'is_loggedin' => $is_loggedin,
                 'username' => $username
             ]);
         } else {
 
             // return non main component (for non logged-in users)
-            return view('home', [
+            return view('components/home', [
                 'is_loggedin' => $is_loggedin
             ]);
         }

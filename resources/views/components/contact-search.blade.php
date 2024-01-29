@@ -7,7 +7,7 @@
             <h1 class="form-title">Search contact</h1>
             
             @if ($error_msg)            
-                @include('sub-components.error-message-box')
+                @include('components.sub-components.error-message-box')
             @endif
 
             <form action="/contact/search" method="post" autocomplete="off">

@@ -58,7 +58,7 @@ class ContactSearchController extends Controller
                 }
             }
 
-            return view('contact-search', [
+            return view('components/contact-search', [
                 'is_loggedin' => $is_loggedin,
                 'username' => $username,
 

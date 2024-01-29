@@ -34,7 +34,7 @@
     </noscript>
     
     <!-- navigation component-->
-    @include('sub-components.navigation')
+    @include('components.sub-components.navigation')
 
     <!-- main component -->
     <div class="main-container">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ContactAddController;
 use App\Http\Controllers\ContactSearchController;
 use App\Http\Controllers\ProfileViewerController;
 use Illuminate\Support\Facades\Route;
@@ -43,3 +44,6 @@ Route::post('/contact/search', [ContactSearchController::class, 'searchContact']
 // profile viewer
 Route::get('/profile', [ProfileViewerController::class, 'profileViewer']);
 Route::post('/profile', [ProfileViewerController::class, 'profileViewer']);
+
+// add contact to chats
+Route::get('/contact/add', [ContactAddController::class, 'contactAdd']);

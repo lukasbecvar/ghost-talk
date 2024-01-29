@@ -42,6 +42,6 @@ class ErrorManager
 
     public function handleErrorView(int $code): void
     {
-        echo $this->view->make('error/error_'.$code)->render();;
+        die($this->view->make('error/error-'.$code)->render());
     }
 }

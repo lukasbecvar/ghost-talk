@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controller;
+use App\Managers\ContactManager;
 use App\Utils\SecurityUtil;
 use App\Managers\UserManager;
 use Illuminate\Contracts\View\View;
@@ -11,11 +12,13 @@ class ProfileViewerController extends Controller
 {
     private UserManager $userManager;
     private SecurityUtil $securityUtil;
+    private ContactManager $contactManager;
 
-    public function __construct(UserManager $userManager, SecurityUtil $securityUtil)
+    public function __construct(UserManager $userManager, SecurityUtil $securityUtil, ContactManager $contactManager)
     {
         $this->userManager = $userManager;
         $this->securityUtil = $securityUtil;
+        $this->contactManager = $contactManager;
     }
 
     public function profileViewer(): View
@@ -49,11 +52,14 @@ class ProfileViewerController extends Controller
                 // get user data 
                 $user_data = $this->userManager->getUserData('token', $token);
                 
-                return view('profile-viewer', [
+                $connection_status = $this->contactManager->getConnectionStatus($profile_name, $username);
+
+                return view('components/profile-viewer', [
                     'is_loggedin' => $is_loggedin,
                     'username' => $username,
     
-                    'user_data' => $user_data
+                    'user_data' => $user_data,
+                    'connection_status' => $connection_status
                 ]);
 
             } else {

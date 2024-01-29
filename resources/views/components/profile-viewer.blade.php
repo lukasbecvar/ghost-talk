@@ -28,8 +28,14 @@
                 <span class="label">Registered Date:</span>
                 <span class="value">{{ $user_data->created_at }}</span>
             </div>
-            <button class="add-to-contact-btn">Add to Contact</button>
-            <button class="add-to-contact-btn block-contact-btn">Block</button>
+            @if ($username != $user_data->username)
+                @if ($connection_status != null)
+                    <button class="add-to-contact-btn waiting">waiting...</button>
+                @else
+                    <a href="/contact/add?name={{$user_data->username}}" class="add-to-contact-btn">Add to Contact</a>
+                @endif
+                <a href="#" class="add-to-contact-btn block-contact-btn">Block</a>
+            @endif
         </div>
     </div>
 </center>

@@ -329,6 +329,7 @@ body {
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s ease;
+    text-decoration: none;
 }
 
 .add-to-contact-btn:hover {
@@ -357,4 +358,8 @@ body {
 
 .black-text {
     color: black;
+}
+
+.waiting {
+    font-size: 16px;
 }
