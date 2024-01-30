@@ -21,37 +21,20 @@ The ghost talk has no functions for logging ip address or other values like geol
 ## Account system (password reset)
 For the maximum anonymity it will be impossible to use any type of email address authentication, login and registration will be only with username and password. It will never be possible to reset passwords!
 
-## TODO
-## Phase - 1
-   - [X] Setup and clean laravel
-   - [X] Basic app base
-   - [X] Auth system
-   - [X] Basic layout & style system (only for development)
-   - [X] Home component with information about project
-   - [X] Basic user panel (username, basic navigation(logout link))
-   - [X] PHPStan code analyze 
-## Phase - 2
-   - [X] Chatbox layout
-   - [X] Contact list (store contacts(users))
-   - [X] User search 
-   - [X] Profile viewer 
-   - [X] Add to contacts in profile viewer
-   - [X] Pending users list (accept or decline)
-   - [X] Chat list component
-## Phase - 3
-   - [X] Main chat component with
-   - [ ] User block system (block/unblock (button in profile viewer))
-   - [ ] Drop connection (delete connection and delete all chat messages)
-   - [ ] Highlight url links in messages
-## Phase - 4
-   - [ ] User settings (change password, deactivate account, delete all chats)
-   - [ ] Global chat (for all users in app)
-   - [ ] Photo & video share in chat
-   - [ ] File share in chat
-## Phase - 5
-   - [ ] Remove landscape mode only and create mobile responsive style
-   - [ ] Chat history encryption (! important !)
-   - [ ] Admin system
+## TODOS
+- [X] Main chat component with
+- [ ] Highlight url links in messages
+- [ ] User block system (block/unblock (button in profile viewer))
+- [ ] Chat data encryption
+
+## TODOS V 2
+- [ ] Global chat
+- [ ] Remove landscape mode only and create mobile responsive style
+- [ ] Drop connection (delete connection & delete all chat messages)
+- [ ] User settings (change username, change password, deactivate account, delete all chats)
+- [ ] Photo & video share in chat
+- [ ] File share in chat
+- [ ] Admin system
 
 ## Dependencies 
 * Laravel
