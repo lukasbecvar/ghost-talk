@@ -11,7 +11,7 @@
             @endphp
             
             @if ($connection->getStatus() === 'active')
-                <li><a href="#">{{ $otherUsername }}</a></li>
+                <li><a href="/?chat={{ $connection->getID(); }}">{{ $otherUsername }}</a></li>
             @endif
         @endforeach
     </ul>

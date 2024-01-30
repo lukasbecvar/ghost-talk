@@ -29,8 +29,10 @@
                 <span class="value">{{ $user_data->created_at }}</span>
             </div>
             @if ($username != $user_data->username)
-                @if ($connection_status != null)
+                @if ($connection_status == 'pending')
                     <button class="add-to-contact-btn waiting">waiting...</button>
+                @elseif ($connection_status == 'active')
+                    <button class="add-to-contact-btn waiting">connected</button>
                 @else
                     <a href="/contact/add?name={{$user_data->username}}" class="add-to-contact-btn">Add to Contact</a>
                 @endif

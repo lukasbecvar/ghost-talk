@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ChatApiController;
 use App\Http\Controllers\ContactAddController;
 use App\Http\Controllers\ContactSearchController;
 use App\Http\Controllers\PendingContactsController;
@@ -55,3 +56,7 @@ Route::get('/pending/list', [PendingContactsController::class, 'pendingPage']);
 // pending connection actions
 Route::get('/pending/accept', [PendingContactsController::class, 'accept']);
 Route::get('/pending/deny', [PendingContactsController::class, 'deny']);
+
+// chat api
+Route::get('/chat/messages', [ChatApiController::class, 'getChatMessages']);
+Route::post('/chat/send', [ChatApiController::class, 'sendMessage']);

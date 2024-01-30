@@ -38,10 +38,10 @@ For the maximum anonymity it will be impossible to use any type of email address
    - [X] Add to contacts in profile viewer
    - [X] Pending users list (accept or decline)
    - [X] Chat list component
-   - [ ] Refactor
 ## Phase - 3
-   - [ ] Main chat component with
+   - [X] Main chat component with
    - [ ] User block system (block/unblock (button in profile viewer))
+   - [ ] Drop connection (delete connection and delete all chat messages)
    - [ ] Highlight url links in messages
 ## Phase - 4
    - [ ] User settings (change password, deactivate account, delete all chats)

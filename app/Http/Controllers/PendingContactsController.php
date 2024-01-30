@@ -67,7 +67,13 @@ class PendingContactsController extends Controller
                 } else {
 
                     $this->connectionManager->updateConnectonStatus($username, 'active');
-                    return redirect('pending/list/');
+
+                    if ($this->connectionManager->getPendingCount($logged_username) == 0) {
+                        return redirect('/');
+                    } else {
+                        return redirect('pending/list/');
+                    }
+                    
                 }
                 
             } else {
@@ -101,7 +107,13 @@ class PendingContactsController extends Controller
                 } else {
 
                     $this->connectionManager->updateConnectonStatus($username, 'denied');
-                    return redirect('pending/list/');
+
+                    if ($this->connectionManager->getPendingCount($logged_username) == 0) {
+                        return redirect('/');
+                    } else {
+                        return redirect('pending/list/');
+                    }
+
                 }
                 
             } else {

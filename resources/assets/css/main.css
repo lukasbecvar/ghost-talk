@@ -187,16 +187,17 @@ body {
 }
 
 .chat-list {
-    width: 25%;
+    width: 22%;
     overflow-y: auto;
     box-sizing: border-box;
     border-right: 1px solid white;
 }
-
+ 
 .chat-list ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    font-size: 18px;
 }
 
 .chat-list a {
@@ -217,15 +218,34 @@ body {
 .chat-box {
     flex: 1;
     box-sizing: border-box;
-    padding: 5px;
     overflow-y: auto;
     position: relative;
 }
 
+.chat-title {
+    background-color: #383d46;
+    padding: 4px;
+    font-size: 16px;
+    padding-left: 6px;
+    font-weight: bold;
+    border-bottom: 1px solid white;
+}
+
+.chat-title a {
+    color: white;
+}
+
+.chat-title a:hover {
+    color: rgb(255, 91, 91);
+}
+
 .message-container {
+    padding: 5px;
     overflow-y: auto;
-    height: calc(100% - 40px);
+    height: calc(100% - 70px);
     margin-bottom: 10px;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
 }
 
 .message {
@@ -266,8 +286,9 @@ body {
     display: flex;
     align-items: center;
     padding: 3px;
-    padding-right: 5px;
+    padding-right: 3px;
     box-sizing: border-box;
+    background-color: #383d46;
 }
 
 .message-input {
@@ -275,6 +296,8 @@ body {
     padding: 9px;
     border: 1px solid #ccc;
     margin-right: 4px;
+    background-color: #383d46;
+    color: white;
 }
 
 .send-button {
@@ -284,6 +307,10 @@ body {
     border: none;
     cursor: pointer;
     font-weight: bold;
+}
+
+.send-button:hover {
+    background-color: #5dbb61;
 }
 
 .contact-list-navbar {

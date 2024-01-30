@@ -104,4 +104,42 @@ class ConnectionManager
             }
         }
     }
+
+    public function isChatAccessable(string $chat_id): bool
+    {
+        $data = Connection::where('id', $chat_id)->first();
+
+        $username = $this->userManager->getLoggedUsername();
+
+        if (in_array($username, $data->users)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getConnectionChatUser(string $chat_id): string 
+    {
+        $data = Connection::where('id', $chat_id)->first();
+    
+        $username = $this->userManager->getLoggedUsername();
+    
+        $users = $data->getUsers();
+    
+        // find the user who is not equal to the currently logged-in user
+        $otherUser = collect($users)->first(function ($user) use ($username) {
+            return $user !== $username;
+        });
+    
+        return $otherUser ?? null;
+    }
+
+    public function getFirstChatIdForLoggedUser(): ?string
+    {
+        $username = $this->userManager->getLoggedUsername();
+
+        $connection = Connection::whereJsonContains('users', $username)->first();
+
+        return $connection ? $connection->id : null;
+    }
 }

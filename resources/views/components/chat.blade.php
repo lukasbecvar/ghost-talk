@@ -1,29 +1,125 @@
 <div class="chat-box">
-    <div class="message-container">
+    <div class="chat-title"><a href="/profile?name={{ $chat_username }}">{{ $chat_username }}</a></div>
 
+    <div class="message-container" id="message-container"></div>
 
-
-        <div class="message incoming">
-            <div class="title">
-                <span class="username">User1</span>
-                <span class="timestamp">12:30</span>
-            </div>
-            Incoming message 1
-        </div>
-
-        <div class="message outgoing">
-            <div class="title">
-                <span class="username">You</span>
-                <span class="timestamp">12:30</span>
-            </div>
-            Outgoing message 1
-        </div>
-
-
-
-    </div>
     <div class="message-input-container">
-        <input type="text" class="message-input" placeholder="Type your message">
-        <button class="send-button">Send</button>
+        <input type="text" class="message-input" placeholder="Type your message" id="message-input" onkeydown="handleEnterKey(event)">
+        <button class="send-button" onclick="sendMessage()">Send</button>
     </div>
+
 </div>
+
+<script>
+
+    // Function to fetch messages and update the UI
+    function fetchMessages(chatId) {
+        const messageContainer = document.getElementById('message-container');
+        const isUserAtBottom = messageContainer.scrollHeight - messageContainer.scrollTop === messageContainer.clientHeight;
+
+        fetch(`/chat/messages?chat=${chatId}`)
+            .then(response => response.json())
+            .then(messages => {
+                const shouldAutoScroll = isUserAtBottom;
+
+                messageContainer.innerHTML = ''; // Clear previous messages
+
+                messages.forEach(message => {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.classList.add('message', message.sender === '{{ $username }}' ? 'outgoing' : 'incoming');
+
+                    const titleDiv = document.createElement('div');
+                    titleDiv.classList.add('title');
+
+                    const usernameSpan = document.createElement('span');
+                    usernameSpan.classList.add('username');
+                    usernameSpan.textContent = message.sender;
+
+                    const timestampSpan = document.createElement('span');
+                    timestampSpan.classList.add('timestamp');
+
+                    // Parse timestamp and format it (assuming the timestamp is in ISO format)
+                    const timestampDate = new Date(message.created_at);
+                    const formattedTimestamp = `${timestampDate.getHours()}:${(timestampDate.getMinutes() < 10 ? '0' : '') + timestampDate.getMinutes()}`;
+
+                    timestampSpan.textContent = formattedTimestamp;
+
+                    titleDiv.appendChild(usernameSpan);
+                    titleDiv.appendChild(timestampSpan);
+
+                    const messageContent = document.createTextNode(message.message);
+
+                    messageDiv.appendChild(titleDiv);
+                    messageDiv.appendChild(messageContent);
+
+                    messageContainer.appendChild(messageDiv);
+                });
+
+                // Scroll down only if the user was at the bottom before fetching new messages
+                if (shouldAutoScroll) {
+                    messageContainer.scrollTop = messageContainer.scrollHeight;
+                }
+            });
+    }
+
+    // Set interval to fetch messages every second
+    setInterval(() => {
+        fetchMessages({{ $chat_id }});
+    }, 500);
+
+    function sendMessage() {
+        // Add your code to send a message
+        const messageInput = document.getElementById('message-input');
+        const message = messageInput.value;
+
+        // Assuming you have a function to send a message
+        sendNewMessage(message);
+
+        // Clear the input after sending
+        messageInput.value = '';
+    }
+
+    // Example function to send a new message (replace with your actual implementation)
+    function sendNewMessage(message) {
+        const messageContainer = document.getElementById('message-container');
+
+        if (!message.length < 1) {
+
+            var messageInput = document.getElementById('message-input');
+            var message = messageInput.value;
+
+            // Fetch API to send the message
+            fetch(`/chat/send?chat={{ $chat_id }}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}', 
+                },
+                body: JSON.stringify({
+                    message: message,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Handle the response as needed
+                // Refresh or update the UI with the new message
+                fetchMessages({{ $chat_id }});
+                // Clear the input after sending
+                messageInput.value = '';
+            })
+            .catch(error => {
+                console.error('Error sending message:', error);
+            });
+
+        }
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+    }
+
+    // Function to handle Enter key press
+    function handleEnterKey(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault(); // Prevent the default behavior (line break in the input)
+            sendMessage(); // Trigger the sendMessage function
+        }
+    }
+</script>

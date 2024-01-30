@@ -17,9 +17,9 @@ class Connection extends Model
         return $this->attributes['id'];
     }
 
-    public function setUsers(mixed $value): void
+    public function setUsers(mixed $users): void
     {
-        $this->attributes['users'] = json_encode($value);
+        $this->attributes['users'] = json_encode($users);
     }
 
     public function getUsers(): mixed
@@ -27,9 +27,9 @@ class Connection extends Model
         return json_decode($this->attributes['users'], true);
     }
     
-    public function setSender(string $value): void
+    public function setSender(string $sender): void
     {
-        $this->attributes['sender'] = trim($value);
+        $this->attributes['sender'] = trim($sender);
     }
 
     public function getSender(): string
@@ -37,9 +37,9 @@ class Connection extends Model
         return $this->attributes['sender'];
     }
 
-    public function setStatus(string $value): void
+    public function setStatus(string $status): void
     {
-        $this->attributes['status'] = trim($value);
+        $this->attributes['status'] = trim($status);
     }
 
     public function getStatus(): string
