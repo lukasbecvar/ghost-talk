@@ -33,27 +33,25 @@ class ChatApiController extends Controller
 
             if ($chat_id == null) {
                 $this->errorManager->handleError('error chat (query string parameter) is null', 400);
-            } else {
-                $chat_id = $this->securityUtil->escapeString($chat_id);
+            } 
             
-                $chat_messages = $this->chatManager->getMessages($chat_id);
+            $chat_id = $this->securityUtil->escapeString($chat_id);
+            
+            $chat_messages = $this->chatManager->getMessages($chat_id);
 
-                return json_encode($chat_messages);
-            }
+            return json_encode($chat_messages);
+
         } else {
             return view('error/error-403');
         }
     }
 
-    public function sendMessage(Request $request)
+    public function sendMessage(Request $request): mixed
     {
         if ($this->userManager->isLoggedin()) {
 
             $chat_id = request('chat');
-    
-            $request->validate([
-                'message' => 'required|string|max:255',
-            ]);
+
         
             $sender = $this->userManager->getLoggedUsername();
     

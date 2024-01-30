@@ -118,7 +118,7 @@ class ConnectionManager
         }
     }
 
-    public function getConnectionChatUser(string $chat_id): string 
+    public function getConnectionChatUser(string $chat_id): ?string
     {
         $data = Connection::where('id', $chat_id)->first();
     
@@ -126,12 +126,16 @@ class ConnectionManager
     
         $users = $data->getUsers();
     
-        // find the user who is not equal to the currently logged-in user
-        $otherUser = collect($users)->first(function ($user) use ($username) {
-            return $user !== $username;
-        });
+        $other_user = null;
     
-        return $otherUser ?? null;
+        foreach ($users as $user) {
+            if ($user !== $username) {
+                $other_user = $user;
+                break;
+            }
+        }
+    
+        return $other_user;
     }
 
     public function getFirstChatIdForLoggedUser(): ?string
@@ -140,6 +144,10 @@ class ConnectionManager
 
         $connection = Connection::whereJsonContains('users', $username)->first();
 
-        return $connection ? $connection->id : null;
+        if ($connection != null) {
+            return strval($connection->id);
+        } else {
+            return null;
+        }
     }
 }

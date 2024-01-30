@@ -49,10 +49,14 @@ class HomeController extends Controller
             }
 
             // check if chat is accessable by logged user
-            if (!$this->connectionManager->isChatAccessable($chat_id)) {
-                return view('error/error-403');
+            if ($chat_id != null) {
+                if (!$this->connectionManager->isChatAccessable($chat_id)) {
+                    return view('error/error-403');
+                } else {
+                    $chat_user = $this->connectionManager->getConnectionChatUser($chat_id);
+                }
             } else {
-                $chat_user = $this->connectionManager->getConnectionChatUser($chat_id);
+                $chat_user = null;
             }
 
             // return main chat box (main component for logged-in users)
