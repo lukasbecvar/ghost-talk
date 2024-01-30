@@ -251,8 +251,9 @@ body {
 .message {
     background-color: #fff;
     padding: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     width: 97.5%;
+    border-radius: 10px;
 }
 
 .incoming {

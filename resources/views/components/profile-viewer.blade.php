@@ -30,9 +30,9 @@
             </div>
             @if ($username != $user_data->username)
                 @if ($connection_status == 'pending')
-                    <button class="add-to-contact-btn waiting">waiting...</button>
+                    <button class="add-to-contact-btn waiting">Waiting...</button>
                 @elseif ($connection_status == 'active')
-                    <button class="add-to-contact-btn waiting">connected</button>
+                    <button class="add-to-contact-btn waiting">Connected</button>
                 @else
                     <a href="/contact/add?name={{$user_data->username}}" class="add-to-contact-btn">Add to Contact</a>
                 @endif
