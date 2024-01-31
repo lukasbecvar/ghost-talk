@@ -55,8 +55,8 @@ class ChatApiController extends Controller
     
             $message_input = $request->input('message');
 
-            if (strlen($message_input) > 1000) {
-                $this->errorManager->handleError('maximal message length is 1000 characters', 400);
+            if (strlen($message_input) > 2050) {
+                $this->errorManager->handleError('maximal message length is 2000 characters', 400);
             }
 
             try {

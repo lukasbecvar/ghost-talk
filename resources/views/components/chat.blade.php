@@ -73,15 +73,15 @@
         const message = messageInput.value;
 
         // Assuming you have a function to send a message
-        if (message.length > 1000) {
-            alert('maximal message length is 1000 characters')
+        if (message.length > 2000) {
+            // Show a custom alert for maximal message length error
+            showAlert('Maximal message length is 2000 characters');
         } else {
             sendNewMessage(message);
         }
 
-        // Clear the input after sending
-        messageInput.value = '';
     }
+
 
     // Example function to send a new message (replace with your actual implementation)
     function sendNewMessage(message) {
@@ -125,5 +125,22 @@
             event.preventDefault(); // Prevent the default behavior (line break in the input)
             sendMessage(); // Trigger the sendMessage function
         }
+    }
+
+    function showAlert(message) {
+        const alertContainer = document.createElement('div');
+        alertContainer.classList.add('custom-alert');
+
+        const alertMessage = document.createElement('p');
+        alertMessage.textContent = message;
+
+        alertContainer.appendChild(alertMessage);
+
+        document.body.appendChild(alertContainer);
+
+        // Remove the alert after a few seconds (adjust the timeout as needed)
+        setTimeout(() => {
+            document.body.removeChild(alertContainer);
+        }, 3000);
     }
 </script>
