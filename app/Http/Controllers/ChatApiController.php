@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controller;
-use App\Managers\ChatManager;
-use App\Managers\ErrorManager;
-use App\Managers\UserManager;
 use App\Models\Message;
+use App\Http\Controller;
 use App\Utils\SecurityUtil;
 use Illuminate\Http\Request;
+use App\Managers\UserManager;
+use App\Managers\ChatManager;
+use App\Managers\ErrorManager;
 
 class ChatApiController extends Controller
 {
@@ -51,16 +51,20 @@ class ChatApiController extends Controller
         if ($this->userManager->isLoggedin()) {
 
             $chat_id = request('chat');
-
-        
             $sender = $this->userManager->getLoggedUsername();
     
+            $message_input = $request->input('message');
+
+            if (strlen($message_input) > 1000) {
+                $this->errorManager->handleError('maximal message length is 1000 characters', 400);
+            }
+
             try {
                 // Assume you have a Message model
                 $message = new Message();
     
     
-                $message->setMessage($request->input('message'));
+                $message->setMessage($message_input);
                 $message->setSender($sender);
                 $message->setChatID($chat_id);
     

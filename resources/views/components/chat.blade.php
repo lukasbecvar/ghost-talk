@@ -73,7 +73,11 @@
         const message = messageInput.value;
 
         // Assuming you have a function to send a message
-        sendNewMessage(message);
+        if (message.length > 1000) {
+            alert('maximal message length is 1000 characters')
+        } else {
+            sendNewMessage(message);
+        }
 
         // Clear the input after sending
         messageInput.value = '';
