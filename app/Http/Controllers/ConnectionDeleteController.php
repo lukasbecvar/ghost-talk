@@ -35,7 +35,11 @@ class ConnectionDeleteController extends Controller
     
                 $username = $this->securityUtil->escapeString($username);
 
-                $this->connectionManager->deleteConnection($username);
+                $logged_username = $this->userManager->getLoggedUsername();
+
+                if ($this->connectionManager->getConnectionStatus($username, $logged_username) == 'active') {
+                    $this->connectionManager->deleteConnection($username);
+                }
 
                 return redirect('/profile?name='.$username);
             }

@@ -33,13 +33,9 @@
                     <button class="add-to-contact-btn waiting">Waiting...</button>
                 @elseif ($connection_status == 'active')
                     <button class="add-to-contact-btn waiting">Connected</button>
+                    <a href="/contact/delete?name={{$user_data->username}}" class="add-to-contact-btn block-contact-btn">Delete</a>
                 @else
                     <a href="/contact/add?name={{$user_data->username}}" class="add-to-contact-btn">Add to Contact</a>
-                @endif
-
-
-                @if ($connection_status != null)
-                    <a href="/contact/delete?name={{$user_data->username}}" class="add-to-contact-btn block-contact-btn">Delete</a>
                 @endif
 
 
