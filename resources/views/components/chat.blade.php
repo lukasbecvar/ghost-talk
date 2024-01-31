@@ -47,7 +47,12 @@
                     titleDiv.appendChild(usernameSpan);
                     titleDiv.appendChild(timestampSpan);
 
-                    const messageContent = document.createTextNode(message.message);
+                    const messageContent = document.createElement('div');
+                    messageContent.classList.add('message-content');
+                    
+                    // Replace URLs with anchor tags
+                    const messageText = message.message.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" class="link">$1</a>');
+                    messageContent.innerHTML = messageText;
 
                     messageDiv.appendChild(titleDiv);
                     messageDiv.appendChild(messageContent);

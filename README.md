@@ -23,8 +23,7 @@ For the maximum anonymity it will be impossible to use any type of email address
 
 ## TODOS
 - [X] Main chat component with
-- [ ] Limit maximal chat message length 1000 chars
-- [ ] Highlight url links in messages
+- [X] Highlight url links in messages
 - [ ] User block system (block/unblock (button in profile viewer))
 - [ ] Chat data encryption
 
