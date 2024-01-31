@@ -59,6 +59,8 @@ class ChatApiController extends Controller
                 $this->errorManager->handleError('maximal message length is 2000 characters', 400);
             }
 
+            $message_input = $this->securityUtil->encryptAes($message_input);
+
             try {
                 // Assume you have a Message model
                 $message = new Message();
