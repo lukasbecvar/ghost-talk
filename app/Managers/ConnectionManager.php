@@ -2,6 +2,7 @@
 
 namespace App\Managers;
 
+use App\Models\Blocked;
 use App\Models\Chat;
 use App\Models\Connection;
 
@@ -145,9 +146,27 @@ class ConnectionManager
         $connection = Connection::whereJsonContains('users', $username)->first();
 
         if ($connection != null) {
-            return strval($connection->id);
+            if ($connection->getStatus() == 'active') {
+
+                return strval($connection->id);
+            } else {
+                return null;
+            }
         } else {
             return null;
         }
     }
+
+    public function deleteConnection(string $username): void
+    {
+        $logged_user = $this->userManager->getLoggedUsername();
+
+        $data = Connection::whereJsonContains('users', [$username, $logged_user])->first();
+
+        $data->delete();
+
+    }
+
+
+
 }

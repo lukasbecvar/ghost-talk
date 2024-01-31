@@ -36,7 +36,13 @@
                 @else
                     <a href="/contact/add?name={{$user_data->username}}" class="add-to-contact-btn">Add to Contact</a>
                 @endif
-                <a href="#" class="add-to-contact-btn block-contact-btn">Block</a>
+
+
+                @if ($connection_status != null)
+                    <a href="/contact/delete?name={{$user_data->username}}" class="add-to-contact-btn block-contact-btn">Delete</a>
+                @endif
+
+
             @endif
         </div>
     </div>

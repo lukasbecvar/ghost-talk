@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ChatApiController;
+use App\Http\Controllers\ConnectionDeleteController;
 use App\Http\Controllers\ContactAddController;
 use App\Http\Controllers\ContactSearchController;
 use App\Http\Controllers\PendingContactsController;
@@ -60,3 +61,6 @@ Route::get('/pending/deny', [PendingContactsController::class, 'deny']);
 // chat api
 Route::get('/chat/messages', [ChatApiController::class, 'getChatMessages']);
 Route::post('/chat/send', [ChatApiController::class, 'sendMessage']);
+
+// connection delete 
+Route::get('/contact/delete', [ConnectionDeleteController::class, 'deleteConnection']);

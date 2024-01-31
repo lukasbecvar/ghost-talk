@@ -22,16 +22,17 @@ The ghost talk has no functions for logging ip address or other values like geol
 For the maximum anonymity it will be impossible to use any type of email address authentication, login and registration will be only with username and password. It will never be possible to reset passwords!
 
 ## TODOS
-- [X] Main chat component with
-- [X] Highlight url links in messages
-- [ ] User block system (block/unblock (button in profile viewer))
+- [ ] Refresh msgs only if new messages
+- [ ] Load only 100 last messages and load if scroll top
 - [ ] Chat data encryption
+- [ ] ChatApi phpunit test
+- [ ] Complete code refactor
 
 ## TODOS V 2
 - [ ] Global chat
 - [ ] Remove landscape mode only and create mobile responsive style
 - [ ] Drop connection (delete connection & delete all chat messages)
-- [ ] User settings (change username, change password, deactivate account, delete all chats)
+- [ ] User settings (change password, deactivate account, delete all connections)
 - [ ] Photo & video share in chat
 - [ ] File share in chat
 - [ ] Admin system
