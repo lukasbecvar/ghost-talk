@@ -1,7 +1,7 @@
 <div class="chat-box">
     <div class="chat-title"><a href="/profile?name={{ $chat_username }}">{{ $chat_username }}</a></div>
 
-    <div class="message-container" id="message-container" onscroll="loadMoreMessages()"></div>
+    <div class="message-container" id="message-container"></div>
 
     <div class="message-input-container">
         <input type="text" class="message-input" placeholder="Type your message" id="message-input" onkeydown="handleEnterKey(event)">
@@ -112,7 +112,6 @@
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data); // Handle the response as needed
                 // Refresh or update the UI with the new message
                 fetchMessages({{ $chat_id }});
                 // Clear the input after sending

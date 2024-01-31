@@ -21,11 +21,7 @@ The ghost talk has no functions for logging ip address or other values like geol
 ## Account system (password reset)
 For the maximum anonymity it will be impossible to use any type of email address authentication, login and registration will be only with username and password. It will never be possible to reset passwords!
 
-## TODOS
-- [ ] ChatApi phpunit test
-- [ ] Complete code refactor
-
-## TODOS V 2
+## TODOS Version 2
 - [ ] Global chat
 - [ ] Remove landscape mode only and create mobile responsive style
 - [ ] Drop connection (delete connection & delete all chat messages)

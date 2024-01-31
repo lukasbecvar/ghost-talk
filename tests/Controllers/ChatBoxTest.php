@@ -49,6 +49,8 @@ class ChatBoxTest extends TestCase
         $response->assertSee('Logout');
         $response->assertSee('Pending');
         $response->assertSee('Search contacts');
+        $response->assertSee('Send');
+        $response->assertSee('Type your message');
         $response->assertStatus(200);
     }
 }

@@ -14,16 +14,16 @@ class ChatManager
         $this->securityUtil = $securityUtil;
     }
 
-    public function getMessages(string $chat_id)
+    public function getMessages(string $chat_id): mixed
     {
         $data = Message::where('chat_id', $chat_id)->get();
-
+    
         $result = [];
-
+    
         foreach ($data as $value) {
-
+    
             $message = $this->securityUtil->decryptAes($value->message);
-
+    
             $item = [
                 'id' => $value->id,
                 'message' => $message,
@@ -32,11 +32,10 @@ class ChatManager
                 'created_at' => $value->created_at,
                 'updated_at' => $value->updated_at
             ];
-        
+    
             array_push($result, $item);
         }
-
+    
         return $result;
-
     }
 }
