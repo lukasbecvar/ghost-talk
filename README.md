@@ -23,7 +23,6 @@ For the maximum anonymity it will be impossible to use any type of email address
 
 ## TODOS version: 2.0
 - [ ] Global chat
-- [ ] Drop connection (delete connection & delete all chat messages)
 - [ ] User settings (change password, deactivate account, delete all connections)
 - [ ] Photo & video share in chat
 - [ ] File share in chat
