@@ -5,16 +5,17 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use App\Managers\ErrorManager;
+use App\Utils\SiteUtil;
 use Illuminate\Database\DatabaseManager;
 
 class DatabaseOnline
 {
-    private ErrorManager $errorManager;
+    private SiteUtil $siteUtil;
     private DatabaseManager $databaseManager;
 
-    public function __construct(ErrorManager $errorManager, DatabaseManager $databaseManager)
+    public function __construct(SiteUtil $siteUtil, DatabaseManager $databaseManager)
     {
-        $this->errorManager = $errorManager;
+        $this->siteUtil = $siteUtil;
         $this->databaseManager = $databaseManager;
     }
 
@@ -24,7 +25,11 @@ class DatabaseOnline
             // get pdo connection
             $this->databaseManager->connection()->getPdo();
         } catch (\Exception $e) {
-            $this->errorManager->handleError('Database error: '.$e->getMessage(), 500);
+            if ($this->siteUtil->isDevMode()) {
+                die('Database error: '.$e->getMessage());
+            } else {
+                die('Internal server error');
+            }
         }
 
         return $next($request);
