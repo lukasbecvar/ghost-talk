@@ -7,15 +7,40 @@ use Illuminate\Http\Request;
 use App\Managers\ErrorManager;
 use Illuminate\Support\Facades\File;
 
+/**
+ * Class AssetsCheck
+ *
+ * Middleware for checking the existence of build assets.
+ *
+ * @package App\Http\Middleware
+ */
 class AssetsCheck
 {
+    /**
+     * The ErrorManager instance for handling errors.
+     *
+     * @var ErrorManager
+     */
     private ErrorManager $errorManager;
 
+    /**
+     * AssetsCheck constructor.
+     *
+     * @param ErrorManager $errorManager
+     */
     public function __construct(ErrorManager $errorManager)
     {
         $this->errorManager = $errorManager;
     }
 
+    /**
+     * Handle an incoming request.
+     *
+     * @param Request $request
+     * @param Closure $next
+     *
+     * @return mixed
+     */
     public function handle(Request $request, Closure $next): mixed
     {
         // get build path (assets folder)

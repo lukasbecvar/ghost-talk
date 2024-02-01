@@ -7,17 +7,47 @@ use App\Utils\SecurityUtil;
 use Illuminate\Http\Request;
 use App\Managers\UserManager;
 
+/**
+ * Class RegisterController
+ *
+ * Controller handling user registration functionality.
+ *
+ * @package App\Http\Controllers\Auth
+ */
 class RegisterController extends Controller
 {
+    /**
+     * The UserManager instance for managing user-related operations.
+     *
+     * @var UserManager
+     */
     private UserManager $userManager;
+
+    /**
+     * The SecurityUtil instance for handling security-related tasks.
+     *
+     * @var SecurityUtil
+     */
     private SecurityUtil $securityUtil;
 
+    /**
+     * RegisterController constructor.
+     *
+     * @param UserManager $userManager
+     * @param SecurityUtil $securityUtil
+     */
     public function __construct(UserManager $userManager, SecurityUtil $securityUtil)
     {
         $this->userManager = $userManager;
         $this->securityUtil = $securityUtil;
     }
 
+    /**
+     * Handle user registration.
+     *
+     * @param Request $request
+     * @return mixed
+     */
     public function register(Request $request): mixed
     {
         // get user login state

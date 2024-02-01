@@ -5,8 +5,18 @@ namespace Tests\Auth;
 use Tests\TestCase;
 use App\Models\User;
 
+/**
+ * Class LogoutTest
+ * 
+ * @package Tests\Auth
+ * 
+ * The test suite for auth logout component
+ */
 class LogoutTest extends TestCase
 {
+    /**
+     * Set up the test environment.
+     */
     public function setUp(): void
     {
         parent::setUp();
@@ -29,6 +39,9 @@ class LogoutTest extends TestCase
         }
     }
 
+    /**
+     * Test the logout functionality.
+     */
     public function test_logout(): void
     {
         // set session token (simulate auth)

@@ -5,8 +5,18 @@ namespace Tests\Auth;
 use Tests\TestCase;
 use Illuminate\Support\Str;
 
+/**
+ * Class RegisterTest
+ * 
+ * @package Tests\Auth
+ * 
+ * The test suite for auth register component
+ */
 class RegisterTest extends TestCase
 {
+    /**
+     * Test the registration page.
+     */
     public function test_register(): void
     {
         $response = $this->get('/register');
@@ -16,6 +26,9 @@ class RegisterTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test registration with an empty username.
+     */
     public function test_register_empty_username(): void
     {
         $response = $this->post('/register', [
@@ -27,6 +40,9 @@ class RegisterTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test registration with an empty password.
+     */
     public function test_register_empty_password(): void
     {
         $response = $this->post('/register', [
@@ -39,6 +55,9 @@ class RegisterTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test registration with an empty repeated password.
+     */
     public function test_register_empty_repassword(): void
     {
         $response = $this->post('/register', [
@@ -52,6 +71,9 @@ class RegisterTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test registration with a short username.
+     */
     public function test_register_short_username(): void
     {
         $response = $this->post('/register', [
@@ -66,6 +88,9 @@ class RegisterTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test registration with a short password.
+     */
     public function test_register_short_password(): void
     {
         $response = $this->post('/register', [
@@ -80,6 +105,9 @@ class RegisterTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test registration with non-matching passwords.
+     */
     public function test_register_password_match(): void
     {
         $response = $this->post('/register', [
@@ -94,6 +122,9 @@ class RegisterTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test valid registration.
+     */
     public function test_register_valid(): void
     {
         $response = $this->post('/register', [

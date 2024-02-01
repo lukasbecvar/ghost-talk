@@ -7,17 +7,48 @@ use App\Utils\SessionUtil;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * Class UserManager
+ *
+ * Manager class for handling user-related functionalities.
+ *
+ * @package App\Managers
+ */
 class UserManager 
 {
+    /**
+     * The SessionUtil instance for manage session data
+     * 
+     * @var SessionUtil
+     */
     private SessionUtil $sessionUtil;
+
+    /**
+     * The ErrorManager instance for handling errors.
+     *
+     * @var ErrorManager
+     */
     private ErrorManager $errorManager;
 
+    /**
+     * UserManager constructor.
+     *
+     * @param SessionUtil $sessionUtil
+     * @param ErrorManager $errorManager
+     */
     public function __construct(SessionUtil $sessionUtil, ErrorManager $errorManager)
     {
         $this->sessionUtil = $sessionUtil;
         $this->errorManager = $errorManager;
     }
 
+    /**
+     * Register a new user.
+     *
+     * @param string $username
+     * @param string $password
+     * @return string|null
+     */
     public function register(string $username, string $password): ?string
     {
         // init user entity
@@ -55,11 +86,23 @@ class UserManager
         }
     }
 
+    /**
+     * Get the token of a user by their username.
+     *
+     * @param string $username
+     * @return string|null
+     */
     public function getUserToken(string $username): ?string
     {
         return $this->getUserData('username', $username)->getToken();
     }
 
+    /**
+     * Check if a token exists in the database.
+     *
+     * @param string $token
+     * @return bool
+     */
     public function checkIsTokenExist(string $token): bool
     {
         // get user data
@@ -73,6 +116,11 @@ class UserManager
         }
     }
 
+    /**
+     * Check if a user is logged in.
+     *
+     * @return bool
+     */
     public function isLoggedin(): bool
     {
         // check if token is in session
@@ -92,6 +140,13 @@ class UserManager
         }
     }
 
+    /**
+     * Check if a user can log in with the provided credentials.
+     *
+     * @param string $username
+     * @param string $password
+     * @return bool
+     */
     public function canLogin(string $username, string $password): bool
     {
         // get user data
@@ -110,11 +165,22 @@ class UserManager
         }
     }
 
+    /**
+     * Log in a user by setting the user token in the session.
+     *
+     * @param string $token
+     * @return void
+     */
     public function login(string $token): void
     {
         $this->sessionUtil->setSession('user-token', $token);
     }
 
+    /**
+     * Get the username of the logged-in user.
+     *
+     * @return string|null
+     */
     public function getLoggedUsername(): ?string
     {
         // check if user si logged
@@ -129,6 +195,12 @@ class UserManager
         }
     }
 
+    /**
+     * Check if a user with the given username exists.
+     *
+     * @param string $username
+     * @return bool
+     */
     public function isUserExist(string $username): bool
     {
         // get user data
@@ -143,6 +215,8 @@ class UserManager
     }
 
     /**
+     * Get user data based on a specified condition.
+     * 
      * @param string $where
      * @param string $value
      * @return \App\Models\User|null

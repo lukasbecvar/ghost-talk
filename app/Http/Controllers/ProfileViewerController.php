@@ -8,12 +8,43 @@ use App\Managers\UserManager;
 use App\Managers\ConnectionManager;
 use Illuminate\Contracts\View\View;
 
+/**
+ * Class ProfileViewerController
+ *
+ * Controller responsible for viewing user profiles.
+ *
+ * @package App\Http\Controllers
+ */
 class ProfileViewerController extends Controller
 {
+    /**
+     * The UserManager instance for managing user-related operations.
+     *
+     * @var UserManager
+     */
     private UserManager $userManager;
+
+    /**
+     * The SecurityUtil instance for handling security-related tasks.
+     *
+     * @var SecurityUtil
+     */
     private SecurityUtil $securityUtil;
+
+    /**
+     * The ConnectionManager instance for managing user connections.
+     *
+     * @var ConnectionManager
+     */
     private ConnectionManager $connectionManager;
 
+    /**
+     * ProfileViewerController constructor.
+     *
+     * @param UserManager $userManager
+     * @param SecurityUtil $securityUtil
+     * @param ConnectionManager $connectionManager
+     */
     public function __construct(UserManager $userManager, SecurityUtil $securityUtil, ConnectionManager $connectionManager)
     {
         $this->userManager = $userManager;
@@ -21,6 +52,11 @@ class ProfileViewerController extends Controller
         $this->connectionManager = $connectionManager;
     }
 
+    /**
+     * Display the profile page for a given user.
+     *
+     * @return View
+     */
     public function profileViewer(): View
     {
         // get login state

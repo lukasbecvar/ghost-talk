@@ -8,13 +8,51 @@ use App\Managers\UserManager;
 use App\Managers\ErrorManager;
 use App\Managers\ConnectionManager;
 
+/**
+ * Class ContactAddController
+ *
+ * Controller handling the addition of contacts.
+ *
+ * @package App\Http\Controllers
+ */
 class ContactAddController extends Controller
 {
+    /**
+     * The UserManager instance for managing user-related operations.
+     *
+     * @var UserManager
+     */
     private UserManager $userManager;
+
+    /**
+     * The SecurityUtil instance for handling security-related tasks.
+     *
+     * @var SecurityUtil
+     */
     private SecurityUtil $securityUtil;
+
+    /**
+     * The ErrorManager instance for handling errors.
+     *
+     * @var ErrorManager
+     */
     private ErrorManager $errorManager;
+
+    /**
+     * The ConnectionManager instance for managing user connections.
+     *
+     * @var ConnectionManager
+     */
     private ConnectionManager $connectionManager;
 
+    /**
+     * ContactAddController constructor.
+     *
+     * @param UserManager $userManager
+     * @param SecurityUtil $securityUtil
+     * @param ErrorManager $errorManager
+     * @param ConnectionManager $connectionManager
+     */
     public function __construct(UserManager $userManager, SecurityUtil $securityUtil, ErrorManager $errorManager, ConnectionManager $connectionManager)
     {
         $this->userManager = $userManager;
@@ -23,6 +61,11 @@ class ContactAddController extends Controller
         $this->connectionManager = $connectionManager;
     }
         
+    /**
+     * Add a contact.
+     *
+     * @return mixed
+     */
     public function contactAdd(): mixed
     {
         if ($this->userManager->isLoggedin()) {

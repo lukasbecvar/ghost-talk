@@ -5,8 +5,18 @@ namespace Tests\Controllers;
 use Tests\TestCase;
 use App\Models\User;
 
+/**
+ * Class PendingSystemTest
+ *
+ * @package Tests\Controllers
+ *
+ * Test suite for the pending system controller to ensure correct rendering and functionality.
+ */
 class PendingSystemTest extends TestCase
 {
+    /**
+     * Set up the test environment.
+     */
     public function setUp(): void
     {
         parent::setUp();
@@ -29,6 +39,9 @@ class PendingSystemTest extends TestCase
         }
     }
 
+    /**
+     * Tear down the test environment.
+     */
     public function tearDown(): void
     {
         // destory testing session
@@ -36,6 +49,9 @@ class PendingSystemTest extends TestCase
         parent::tearDown();
     }
 
+    /**
+     * Test access to the pending list for a guest user.
+     */
     public function test_pending_list_guest(): void
     {
         $response = $this->get('/pending/list');
@@ -44,6 +60,9 @@ class PendingSystemTest extends TestCase
         $response->assertStatus(200);
     }
  
+    /**
+     * Test access to the pending accept page for a guest user.
+     */
     public function test_pending_accept_guest(): void
     {
         $response = $this->get('/pending/accept');
@@ -52,6 +71,9 @@ class PendingSystemTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test access to the pending deny page for a guest user.
+     */
     public function test_pending_deny_guest(): void
     {
         $response = $this->get('/pending/deny');
@@ -60,6 +82,9 @@ class PendingSystemTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test access to the pending list for an authenticated user.
+     */
     public function test_pending_list(): void
     {
         // set session token (simulate auth)

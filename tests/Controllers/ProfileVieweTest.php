@@ -5,8 +5,18 @@ namespace Tests\Controllers;
 use Tests\TestCase;
 use App\Models\User;
 
+/**
+ * Class ProfileViewerTest
+ *
+ * @package Tests\Controllers
+ *
+ * Test suite for the profile viewer controller to ensure correct rendering and functionality.
+ */
 class ProfileVieweTest extends TestCase
 {
+    /**
+     * Set up the test environment.
+     */
     public function setUp(): void
     {
         parent::setUp();
@@ -29,6 +39,9 @@ class ProfileVieweTest extends TestCase
         }
     }
 
+    /**
+     * Tear down the test environment.
+     */
     public function tearDown(): void
     {
         // destory testing session
@@ -36,6 +49,9 @@ class ProfileVieweTest extends TestCase
         parent::tearDown();
     }
 
+    /**
+     * Test access to the profile viewer route for a non-logged-in user.
+     */
     public function test_profile_viewer_route_non_logged(): void
     {
         $response = $this->get('/profile?name=(phpunit)-user');
@@ -44,6 +60,9 @@ class ProfileVieweTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test access to the profile viewer route for an authenticated user.
+     */
     public function test_profile_viewer_route(): void
     {
         // set session token (simulate auth)

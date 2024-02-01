@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
 use App\Http\Controller;
 use App\Utils\SecurityUtil;
 use Illuminate\Http\Request;
@@ -10,13 +9,51 @@ use App\Managers\UserManager;
 use App\Managers\ChatManager;
 use App\Managers\ErrorManager;
 
+/**
+ * Class ChatApiController
+ *
+ * Controller handling API requests related to the chat functionality.
+ *
+ * @package App\Http\Controllers
+ */
 class ChatApiController extends Controller
 {
+    /**
+     * The UserManager instance for managing user-related operations.
+     *
+     * @var UserManager
+     */
     private UserManager $userManager;
+
+    /**
+     * The ChatManager instance for handling chat-related operations.
+     *
+     * @var ChatManager
+     */
     private ChatManager $chatManager;
+
+    /**
+     * The ErrorManager instance for handling errors.
+     *
+     * @var ErrorManager
+     */
     private ErrorManager $errorManager;
+
+    /**
+     * The SecurityUtil instance for handling security-related tasks.
+     *
+     * @var SecurityUtil
+     */
     private SecurityUtil $securityUtil;
 
+    /**
+     * ChatApiController constructor.
+     *
+     * @param UserManager $userManager
+     * @param ChatManager $chatManager
+     * @param ErrorManager $errorManager
+     * @param SecurityUtil $securityUtil
+     */
     public function __construct(UserManager $userManager, ChatManager $chatManager, ErrorManager $errorManager, SecurityUtil $securityUtil)
     {
         $this->userManager = $userManager;
@@ -25,6 +62,11 @@ class ChatApiController extends Controller
         $this->securityUtil = $securityUtil;
     }
 
+    /**
+     * Get chat messages.
+     *
+     * @return mixed
+     */
     public function getChatMessages(): mixed
     {
         if ($this->userManager->isLoggedin()) {
@@ -49,6 +91,12 @@ class ChatApiController extends Controller
         }
     }
 
+    /**
+     * Send a chat message.
+     *
+     * @param Request $request
+     * @return mixed
+     */
     public function sendMessage(Request $request): mixed
     {
         if ($this->userManager->isLoggedin()) {
@@ -70,25 +118,11 @@ class ChatApiController extends Controller
             // escape chat message
             $message_input = $this->securityUtil->encryptAes($message_input);
 
-            try {
-                // init message modeů
-                $message = new Message();
-    
-                // set message data
-                $message->setMessage($message_input);
-                $message->setSender($sender);
-                $message->setChatID($chat_id);
-    
-                // insert new chat message
-                $message->save();
-        
-                return response()->json(['message' => 'Message sent successfully']);
-            } catch (\Exception $e) {
-                $this->errorManager->handleError('error to insert new message: '.$e->getMessage(), 500);
-                return null;
-            }
+            $this->chatManager->saveChatMessage($message_input, $sender, $chat_id);
+
+            return json_encode(['message' => 'success']);
         } else {
-            return view ('error/error-403');
+            return view('error/error-403');
         }
     }
 }

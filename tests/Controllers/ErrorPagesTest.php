@@ -4,8 +4,18 @@ namespace Tests\Controllers;
 
 use Tests\TestCase;
 
+/**
+ * Class ErrorPagesTest
+ *
+ * @package Tests\Controllers
+ *
+ * Test suite for error pages to ensure correct HTTP responses and error messages.
+ */
 class ErrorPagesTest extends TestCase
 {
+    /**
+     * Test for 400 Bad Request error page.
+     */
     public function test_error_400(): void
     {
         $response = $this->get('/error/400');
@@ -14,6 +24,9 @@ class ErrorPagesTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test for 401 Unauthorized error page.
+     */
     public function test_error_401(): void
     {
         $response = $this->get('/error/401');
@@ -21,6 +34,9 @@ class ErrorPagesTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test for 403 Forbidden error page.
+     */
     public function test_error_403(): void
     {
         $response = $this->get('/error/403');
@@ -28,6 +44,9 @@ class ErrorPagesTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test for 404 Not Found error page.
+     */
     public function test_error_404(): void
     {
         $response = $this->get('/error/404');
@@ -36,6 +55,9 @@ class ErrorPagesTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test for 429 Too Many Requests error page.
+     */
     public function test_error_429(): void
     {
         $response = $this->get('/error/429');
@@ -44,6 +66,9 @@ class ErrorPagesTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test for 500 Internal Server Error page.
+     */
     public function test_error_500(): void
     {
         $response = $this->get('/error/500');
@@ -52,6 +77,9 @@ class ErrorPagesTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test for custom error page when JavaScript is not enabled.
+     */
     public function test_error_unknown(): void
     {
         $response = $this->get('/error/nojs');
@@ -60,6 +88,9 @@ class ErrorPagesTest extends TestCase
         $response->assertStatus(200);
     }
     
+    /**
+     * Test for custom error page when the device is in an unsupported position.
+     */
     public function test_error_position(): void
     {
         $response = $this->get('/error/position');
@@ -67,6 +98,9 @@ class ErrorPagesTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test for an unknown error page.
+     */
     public function test_error_nojs(): void
     {
         $response = $this->get('/error/unknown');

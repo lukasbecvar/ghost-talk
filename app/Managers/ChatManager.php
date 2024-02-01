@@ -5,15 +5,47 @@ namespace App\Managers;
 use App\Models\Message;
 use App\Utils\SecurityUtil;
 
+/**
+ * Class ChatManager
+ *
+ * Manager class for handling chat-related functionality.
+ *
+ * @package App\Managers
+ */
 class ChatManager
 {
+    /**
+     * The SecurityUtil instance for handling security-related tasks.
+     *
+     * @var SecurityUtil
+     */
     private SecurityUtil $securityUtil;
 
-    public function __construct(SecurityUtil $securityUtil)
+    /**
+     * The ErrorManager instance for handling errors.
+     *
+     * @var ErrorManager
+     */
+    private ErrorManager $errorManager;
+
+    /**
+     * ChatManager constructor.
+     *
+     * @param SecurityUtil $securityUtil
+     * @param ErrorManager $errorManager
+     */
+    public function __construct(SecurityUtil $securityUtil, ErrorManager $errorManager)
     {
         $this->securityUtil = $securityUtil;
+        $this->errorManager = $errorManager;
     }
 
+    /**
+     * Get messages for a given chat ID.
+     *
+     * @param string $chat_id
+     * @return mixed
+     */
     public function getMessages(string $chat_id): mixed
     {
         $data = Message::where('chat_id', $chat_id)->get();
@@ -37,5 +69,32 @@ class ChatManager
         }
     
         return $result;
+    }
+
+    /**
+     * Save a new chat message.
+     *
+     * @param string $message_input
+     * @param string $sender
+     * @param string $chat_id
+     * @return void
+     */
+    public function saveChatMessage(string $message_input, string $sender, string $chat_id): void
+    {
+        try {
+            // init message modeů
+            $message = new Message();
+
+            // set message data
+            $message->setMessage($message_input);
+            $message->setSender($sender);
+            $message->setChatID($chat_id);
+
+            // insert new chat message
+            $message->save();
+    
+        } catch (\Exception $e) {
+            $this->errorManager->handleError('error to insert new message: '.$e->getMessage(), 500);
+        }
     }
 }

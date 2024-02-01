@@ -7,17 +7,47 @@ use App\Utils\SecurityUtil;
 use Illuminate\Http\Request;
 use App\Managers\UserManager;
 
+/**
+ * Class LoginController
+ *
+ * Controller handling user login functionality.
+ *
+ * @package App\Http\Controllers\Auth
+ */
 class LoginController extends Controller
 {
+    /**
+     * The UserManager instance for managing user-related operations.
+     *
+     * @var UserManager
+     */
     private UserManager $userManager;
+
+    /**
+     * The SecurityUtil instance for handling security-related tasks.
+     *
+     * @var SecurityUtil
+     */
     private SecurityUtil $securityUtil;
 
+    /**
+     * LoginController constructor.
+     *
+     * @param UserManager $userManager
+     * @param SecurityUtil $securityUtil
+     */
     public function __construct(UserManager $userManager, SecurityUtil $securityUtil)
     {
         $this->userManager = $userManager;
         $this->securityUtil = $securityUtil;
     }
 
+    /**
+     * Handle user login.
+     *
+     * @param Request $request
+     * @return mixed
+     */
     public function login(Request $request): mixed
     {
         // get login status

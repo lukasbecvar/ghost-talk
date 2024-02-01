@@ -5,8 +5,18 @@ namespace Tests\Auth;
 use Tests\TestCase;
 use App\Models\User;
 
+/**
+ * Class LoginTest
+ * 
+ * @package Tests\Auth
+ * 
+ * The test suite for auth login component
+ */
 class LoginTest extends TestCase
 {
+    /**
+     * Set up the test environment.
+     */
     public function setUp(): void
     {
         parent::setUp();
@@ -22,6 +32,9 @@ class LoginTest extends TestCase
         );
     }
 
+    /**
+     * Test if the login page is displayed correctly.
+     */
     public function test_login_page(): void
     {
         $response = $this->get('/login');
@@ -31,6 +44,9 @@ class LoginTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test when attempting to login with an empty username.
+     */
     public function test_login_empty_username(): void
     {
         $response = $this->post('/login', [
@@ -42,6 +58,9 @@ class LoginTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test when attempting to login with an empty password.
+     */
     public function test_login_empty_password(): void
     {
         $response = $this->post('/login', [
@@ -54,6 +73,9 @@ class LoginTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test when attempting to login with incorrect data.
+     */
     public function test_login_incorrect_data(): void
     {
         $response = $this->post('/login', [
@@ -67,6 +89,9 @@ class LoginTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Test when attempting to login with valid data.
+     */
     public function test_login_valid_data(): void
     {
         $response = $this->post('/login', [

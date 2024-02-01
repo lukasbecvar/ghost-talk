@@ -5,8 +5,18 @@ namespace Tests\Controllers;
 use Tests\TestCase;
 use App\Models\User;
 
+/**
+ * Class ContactAddTest
+ * 
+ * @package Tests\Controllers
+ * 
+ * The test suite for contact add routes response codes
+ */
 class ContactAddTest extends TestCase
 {
+    /**
+     * Set up the environment before each test.
+     */
     public function setUp(): void
     {
         parent::setUp();
@@ -29,6 +39,9 @@ class ContactAddTest extends TestCase
         }
     }
 
+    /**
+     * Tear down the environment after each test.
+     */
     public function tearDown(): void
     {
         // destory testing session
@@ -36,6 +49,9 @@ class ContactAddTest extends TestCase
         parent::tearDown();
     }
 
+    /**
+     * Test accessing the 'add contact' page when logged out.
+     */
     public function test_add_contact_logout(): void
     {
         $response = $this->get('/contact/add');
@@ -44,6 +60,9 @@ class ContactAddTest extends TestCase
         $response->assertStatus(200);
     }
  
+    /**
+     * Test attempting to add oneself as a contact.
+     */
     public function test_add_contact_self_add(): void
     {
         // set session token (simulate auth)

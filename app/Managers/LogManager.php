@@ -4,8 +4,22 @@ namespace App\Managers;
 
 use App\Models\Log;
 
+/**
+ * Class LogManager
+ *
+ * Manager class for handling logs and log entities.
+ *
+ * @package App\Managers
+ */
 class LogManager 
 {
+    /**
+     * Save a log entry to the database.
+     *
+     * @param string $name
+     * @param string $value
+     * @return void
+     */
     public function saveLog(string $name, string $value): void
     {
         // init log entity
@@ -33,6 +47,12 @@ class LogManager
         }
     }
 
+    /**
+     * Mark log entries as read.
+     *
+     * @param string $id
+     * @return void
+     */
     public function setReaded(string $id): void
     {
         if ($id == '*') {
@@ -42,6 +62,12 @@ class LogManager
         }
     }
 
+    /**
+     * Get logs with a specific status.
+     *
+     * @param string $status
+     * @return object
+     */
     public function getLogsWhereStatus(string $status): object
     {
         return Log::where('status', $status)->get();

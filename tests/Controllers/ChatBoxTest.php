@@ -5,8 +5,18 @@ namespace Tests\Controllers;
 use Tests\TestCase;
 use App\Models\User;
 
+/**
+ * Class ChatBoxTest
+ * 
+ * @package Tests\Controllers
+ * 
+ * The test suite for check components in main chat box component
+ */
 class ChatBoxTest extends TestCase
 {
+    /**
+     * Set up the environment before each test.
+     */
     public function setUp(): void
     {
         parent::setUp();
@@ -29,6 +39,9 @@ class ChatBoxTest extends TestCase
         }
     }
 
+    /**
+     * Tear down the environment after each test.
+     */
     public function tearDown(): void
     {
         // destory testing session
@@ -36,6 +49,9 @@ class ChatBoxTest extends TestCase
         parent::tearDown();
     }
 
+    /**
+     * Test the chat box functionality.
+     */
     public function test_chat_box(): void
     {
         // set session token (simulate auth)

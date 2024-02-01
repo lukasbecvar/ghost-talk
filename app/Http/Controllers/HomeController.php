@@ -8,12 +8,43 @@ use App\Managers\UserManager;
 use App\Managers\ConnectionManager;
 use Illuminate\Contracts\View\View;
 
+/**
+ * Class HomeController
+ *
+ * Controller handling the home page and related functionality.
+ *
+ * @package App\Http\Controllers
+ */
 class HomeController extends Controller
 {
+    /**
+     * The UserManager instance for managing user-related operations.
+     *
+     * @var UserManager
+     */
     private UserManager $userManager;
+
+    /**
+     * The SecurityUtil instance for handling security-related tasks.
+     *
+     * @var SecurityUtil
+     */
     private SecurityUtil $securityUtil;
+
+    /**
+     * The ConnectionManager instance for managing user connections.
+     *
+     * @var ConnectionManager
+     */
     private ConnectionManager $connectionManager;
 
+    /**
+     * HomeController constructor.
+     *
+     * @param UserManager $userManager
+     * @param SecurityUtil $securityUtil
+     * @param ConnectionManager $connectionManager
+     */
     public function __construct(UserManager $userManager, SecurityUtil $securityUtil, ConnectionManager $connectionManager)
     {
         $this->userManager = $userManager;
@@ -21,6 +52,11 @@ class HomeController extends Controller
         $this->connectionManager = $connectionManager;
     }
 
+    /**
+     * Display the home page.
+     *
+     * @return View
+     */
     public function homePage(): View
     {
         // get login state

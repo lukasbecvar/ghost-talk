@@ -2,8 +2,20 @@
 
 namespace App\Utils;
 
+/**
+ * Class SiteUtil
+ *
+ * Utility class for site-related operations.
+ *
+ * @package App\Utils
+ */
 class SiteUtil
 {
+    /**
+     * Check if the application is in development mode.
+     *
+     * @return bool True if in development mode, false otherwise.
+     */
     public function isDevMode(): bool
     {
         if ($_ENV['APP_DEBUG'] == 'true') {
@@ -13,6 +25,11 @@ class SiteUtil
         }
     }
 
+    /**
+     * Get the HTTP host, default to '127.0.0.1' if not set.
+     *
+     * @return string The HTTP host.
+     */
     public function getHttpHost(): string
     {
         if (isset($_SERVER['HTTP_HOST'])) {
@@ -22,6 +39,11 @@ class SiteUtil
         return '127.0.0.1';
     }
 
+    /**
+     * Check if the application is running on localhost.
+     *
+     * @return bool True if running on localhost, false otherwise.
+     */
     public function isRunningLocalhost(): bool 
     {
 		$localhost = false;
@@ -51,6 +73,11 @@ class SiteUtil
         return $localhost;
     }
 
+    /**
+     * Check if the connection is secure (HTTPS).
+     *
+     * @return bool True if the connection is secure, false otherwise.
+     */
     public function isSsl(): bool 
     {
         // check if set https header

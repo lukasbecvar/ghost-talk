@@ -5,8 +5,18 @@ namespace App\Tests\Utils;
 use App\Utils\SiteUtil;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class SiteUtilTest
+ *
+ * @package App\Tests\Utils
+ *
+ * Test suite for the SiteUtil class to ensure proper functionality of site-related utility methods.
+ */
 class SiteUtilTest extends TestCase
 {
+    /**
+     * Test the isDevMode method to check if the application is in development mode.
+     */
     public function testIsDevMode(): void
     {
         $siteUtil = new SiteUtil();
@@ -20,6 +30,9 @@ class SiteUtilTest extends TestCase
         $this->assertFalse($siteUtil->isDevMode());
     }
 
+    /**
+     * Test the getHttpHost method to retrieve the HTTP host.
+     */
     public function testGetHttpHost(): void
     {
         $siteUtil = new SiteUtil();
@@ -33,6 +46,9 @@ class SiteUtilTest extends TestCase
         $this->assertEquals('127.0.0.1', $siteUtil->getHttpHost());
     }
 
+    /**
+     * Test the isRunningLocalhost method to check if the application is running on localhost.
+     */
     public function testIsRunningLocalhost(): void
     {
         $siteUtil = new SiteUtil();
@@ -54,6 +70,9 @@ class SiteUtilTest extends TestCase
         $this->assertFalse($siteUtil->isRunningLocalhost());
     }
 
+    /**
+     * Test the isSsl method to check if the connection is secure (SSL/TLS).
+     */
     public function testIsSsl(): void
     {
         $siteUtil = new SiteUtil();

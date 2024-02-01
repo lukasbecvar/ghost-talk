@@ -8,12 +8,43 @@ use App\Managers\UserManager;
 use Illuminate\Contracts\View\View;
 use App\Managers\ConnectionManager;
 
+/**
+ * Class PendingContactsController
+ *
+ * Controller handling pending contacts and related functionality.
+ *
+ * @package App\Http\Controllers
+ */
 class PendingContactsController extends Controller
 {
+    /**
+     * The UserManager instance for managing user-related operations.
+     *
+     * @var UserManager
+     */
     private UserManager $userManager;
+
+    /**
+     * The SecurityUtil instance for handling security-related tasks.
+     *
+     * @var SecurityUtil
+     */
     private SecurityUtil $securityUtil;
+
+    /**
+     * The ConnectionManager instance for managing user connections.
+     *
+     * @var ConnectionManager
+     */
     private ConnectionManager $connectionManager;
     
+    /**
+     * PendingContactsController constructor.
+     *
+     * @param UserManager $userManager
+     * @param SecurityUtil $securityUtil
+     * @param ConnectionManager $connectionManager
+     */
     public function __construct(UserManager $userManager, SecurityUtil $securityUtil, ConnectionManager $connectionManager)
     {
         $this->userManager = $userManager;
@@ -21,6 +52,11 @@ class PendingContactsController extends Controller
         $this->connectionManager = $connectionManager;
     }
 
+    /**
+     * Display the page with pending contacts.
+     *
+     * @return View
+     */
     public function pendingPage(): View
     {
         // get login state
@@ -46,6 +82,11 @@ class PendingContactsController extends Controller
         }
     }
 
+    /**
+     * Accept a pending connection request.
+     *
+     * @return mixed
+     */
     public function accept(): mixed
     {
         // get login state
@@ -89,6 +130,11 @@ class PendingContactsController extends Controller
         }
     }
 
+    /**
+     * Deny a pending connection request.
+     *
+     * @return mixed
+     */
     public function deny(): mixed
     {
         // get login state

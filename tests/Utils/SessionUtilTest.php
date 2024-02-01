@@ -6,8 +6,18 @@ use App\Utils\SessionUtil;
 use App\Utils\SecurityUtil;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class SessionUtilTest
+ *
+ * @package App\Tests\Utils
+ *
+ * Test suite for the SessionUtil class to ensure proper functionality of session-related methods.
+ */
 class SessionUtilTest extends TestCase
 {
+    /**
+     * Test the startSession method to ensure proper session initiation behavior.
+     */
     public function testStartSession(): void
     {
         $securityUtilMock = $this->createMock(SecurityUtil::class);
@@ -22,6 +32,9 @@ class SessionUtilTest extends TestCase
         $sessionUtil->startSession();
     }
 
+    /**
+     * Test the destroySession method to ensure proper session destruction behavior.
+     */
     public function testDestroySession(): void
     {
         $securityUtilMock = $this->createMock(SecurityUtil::class);
@@ -32,6 +45,9 @@ class SessionUtilTest extends TestCase
         $this->assertEquals(PHP_SESSION_NONE, session_status());
     }
 
+    /**
+     * Test the checkSession method to ensure proper checking of session existence.
+     */
     public function testCheckSession(): void
     {
         $securityUtilMock = $this->createMock(SecurityUtil::class);
@@ -45,6 +61,9 @@ class SessionUtilTest extends TestCase
         $this->assertFalse($sessionUtil->checkSession('nonexistent_session'));
     }
 
+    /**
+     * Test the setSession and getSessionValue methods to ensure proper handling of session values.
+     */
     public function testSetAndGetSessionValue(): void
     {
         $securityUtilMock = $this->createMock(SecurityUtil::class);

@@ -4,6 +4,13 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+/**
+ * Class Handler
+ *
+ * Exception handler for the application.
+ *
+ * @package App\Exceptions
+ */
 class Handler extends ExceptionHandler
 {
     /**

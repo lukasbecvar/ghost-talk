@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
 {
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
     public function definition(): array
     {
         return [
@@ -18,6 +23,11 @@ class UserFactory extends Factory
         ];
     }
 
+    /**
+     * Define a specific state for creating a test user.
+     *
+     * @return UserFactory
+     */
     public function create_test_user(): UserFactory
     {
         return $this->state([
