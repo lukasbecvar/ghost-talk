@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controller;
-use App\Managers\ConnectionManager;
-use App\Managers\UserManager;
 use App\Utils\SecurityUtil;
+use App\Managers\UserManager;
 use Illuminate\Contracts\View\View;
+use App\Managers\ConnectionManager;
 
 class PendingContactsController extends Controller
 {
@@ -54,11 +54,16 @@ class PendingContactsController extends Controller
         // check if user logged in
         if ($is_loggedin == true) {
 
+            // get current logged user
             $logged_username = $this->userManager->getLoggedUsername();
+            
+            // get username to accept from url (query)
             $username = request('name');
 
+            // check if username seted
             if ($username != null) {
 
+                // escape username
                 $username = $this->securityUtil->escapeString($username);
 
                 // check if not accepting self request
@@ -66,21 +71,19 @@ class PendingContactsController extends Controller
                     return view('error/error-custom', ['error_msg' => "You can't accept self request"]);
                 } else {
 
+                    // update connection status to active 
                     $this->connectionManager->updateConnectonStatus($username, 'active');
 
+                    // return to final page
                     if ($this->connectionManager->getPendingCount($logged_username) == 0) {
                         return redirect('/');
                     } else {
                         return redirect('pending/list/');
                     }
-                    
                 }
-                
             } else {
                 return view('error/error-400');
             }
-
-
         } else {
             return view('error/error-403');
         }
@@ -94,11 +97,16 @@ class PendingContactsController extends Controller
         // check if user logged in
         if ($is_loggedin == true) {
 
+            // get current logged username
             $logged_username = $this->userManager->getLoggedUsername();
+            
+            // get username to deny connection form url (query)
             $username = request('name');
 
+            // check if username seted
             if ($username != null) {
 
+                // escape username
                 $username = $this->securityUtil->escapeString($username);
 
                 // check if not deny self request
@@ -106,20 +114,19 @@ class PendingContactsController extends Controller
                     return view('error/error-custom', ['error_msg' => "You can't deny self request"]);
                 } else {
 
+                    // update connection status to denied
                     $this->connectionManager->updateConnectonStatus($username, 'denied');
 
+                    // return final page route
                     if ($this->connectionManager->getPendingCount($logged_username) == 0) {
                         return redirect('/');
                     } else {
                         return redirect('pending/list/');
                     }
-
                 }
-                
             } else {
                 return view('error/error-400');
             }
-
         } else {
             return view('error/error-403');
         }

@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controller;
-use App\Managers\ConnectionManager;
-use App\Managers\ErrorManager;
-use App\Managers\UserManager;
 use App\Utils\SecurityUtil;
-use Illuminate\Contracts\View\View;
+use App\Managers\UserManager;
+use App\Managers\ErrorManager;
+use App\Managers\ConnectionManager;
 
 class ConnectionDeleteController extends Controller
 {
@@ -28,27 +27,30 @@ class ConnectionDeleteController extends Controller
     {
         if ($this->userManager->isLoggedin()) {
             
+            // get username from url (query)
             $username = request('name');
 
+            // check if username is seted
             if ($username == null) {
                 $this->errorManager->handleError('name (query string parameter) is not defined', 400);
                 return view('error/error-400');
             } else {
     
+                // escape username
                 $username = $this->securityUtil->escapeString($username);
 
+                // get current logged username
                 $logged_username = $this->userManager->getLoggedUsername();
 
+                // delete connection
                 if ($this->connectionManager->getConnectionStatus($username, $logged_username) == 'active') {
                     $this->connectionManager->deleteConnection($username);
                 }
 
                 return redirect('/profile?name='.$username);
             }
-
         } else {
             return view('error/error-403');
         }
-
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
 use App\Http\Controller;
 use App\Utils\SecurityUtil;
 use Illuminate\Http\Request;

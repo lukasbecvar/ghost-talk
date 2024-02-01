@@ -7,90 +7,82 @@
         <input type="text" class="message-input" placeholder="Type your message" id="message-input" onkeydown="handleEnterKey(event)">
         <button class="send-button" onclick="sendMessage()">Send</button>
     </div>
-
 </div>
 
 <script>
-
-    // Function to fetch messages and update the UI
     function fetchMessages(chatId) {
         const messageContainer = document.getElementById('message-container');
         const isUserAtBottom = messageContainer.scrollHeight - messageContainer.scrollTop === messageContainer.clientHeight;
 
-        fetch(`/chat/messages?chat=${chatId}`)
-            .then(response => response.json())
-            .then(messages => {
-                const shouldAutoScroll = isUserAtBottom;
+        fetch(`/chat/messages?chat=${chatId}`).then(response => response.json()).then(messages => {
+            const shouldAutoScroll = isUserAtBottom;
 
-                messageContainer.innerHTML = ''; // Clear previous messages
+            // clear previous messages
+            messageContainer.innerHTML = '';
 
-                messages.forEach(message => {
-                    const messageDiv = document.createElement('div');
-                    messageDiv.classList.add('message', message.sender === '{{ $username }}' ? 'outgoing' : 'incoming');
+            messages.forEach(message => {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', message.sender === '{{ $username }}' ? 'outgoing' : 'incoming');
 
-                    const titleDiv = document.createElement('div');
-                    titleDiv.classList.add('title');
+                const titleDiv = document.createElement('div');
+                titleDiv.classList.add('title');
 
-                    const usernameSpan = document.createElement('span');
-                    usernameSpan.classList.add('username');
-                    usernameSpan.textContent = message.sender;
+                const usernameSpan = document.createElement('span');
+                usernameSpan.classList.add('username');
+                usernameSpan.textContent = message.sender;
 
-                    const timestampSpan = document.createElement('span');
-                    timestampSpan.classList.add('timestamp');
+                const timestampSpan = document.createElement('span');
+                timestampSpan.classList.add('timestamp');
 
-                    // Parse timestamp and format it (assuming the timestamp is in ISO format)
-                    const timestampDate = new Date(message.created_at);
-                    const formattedTimestamp = `${timestampDate.getHours()}:${(timestampDate.getMinutes() < 10 ? '0' : '') + timestampDate.getMinutes()}`;
+                // parse timestamp and format it (assuming the timestamp is in ISO format)
+                const timestampDate = new Date(message.created_at);
+                const formattedTimestamp = `${timestampDate.getHours()}:${(timestampDate.getMinutes() < 10 ? '0' : '') + timestampDate.getMinutes()}`;
 
-                    timestampSpan.textContent = formattedTimestamp;
+                timestampSpan.textContent = formattedTimestamp;
 
-                    titleDiv.appendChild(usernameSpan);
-                    titleDiv.appendChild(timestampSpan);
+                titleDiv.appendChild(usernameSpan);
+                titleDiv.appendChild(timestampSpan);
 
-                    const messageContent = document.createElement('div');
-                    messageContent.classList.add('message-content');
+                const messageContent = document.createElement('div');
+                messageContent.classList.add('message-content');
                     
-                    // Replace URLs with anchor tags
-                    const messageText = message.message.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" class="link">$1</a>');
-                    messageContent.innerHTML = messageText;
+                // replace URLs with anchor tags
+                const messageText = message.message.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" class="link">$1</a>');
+                messageContent.innerHTML = messageText;
 
-                    messageDiv.appendChild(titleDiv);
-                    messageDiv.appendChild(messageContent);
+                messageDiv.appendChild(titleDiv);
+                messageDiv.appendChild(messageContent);
 
-                    messageContainer.appendChild(messageDiv);
-                });
-
-                // Scroll down only if the user was at the bottom before fetching new messages
-                if (shouldAutoScroll) {
-                    messageContainer.scrollTop = messageContainer.scrollHeight;
-                }
+                messageContainer.appendChild(messageDiv);
             });
+
+            // scroll down only if the user was at the bottom before fetching new messages
+            if (shouldAutoScroll) {
+                messageContainer.scrollTop = messageContainer.scrollHeight;
+            }
+        });
     }
 
     fetchMessages({{ $chat_id }});
 
-    // Set interval to fetch messages every second
+    // set interval to fetch messages every second
     setInterval(() => {
         fetchMessages({{ $chat_id }});
     }, 500);
 
     function sendMessage() {
-        // Add your code to send a message
         const messageInput = document.getElementById('message-input');
         const message = messageInput.value;
 
-        // Assuming you have a function to send a message
+        // assuming you have a function to send a message
         if (message.length > 2000) {
-            // Show a custom alert for maximal message length error
+            // ahow a custom alert for maximal message length error
             showAlert('Maximal message length is 2000 characters');
         } else {
             sendNewMessage(message);
         }
-
     }
 
-
-    // Example function to send a new message (replace with your actual implementation)
     function sendNewMessage(message) {
         const messageContainer = document.getElementById('message-container');
 
@@ -99,7 +91,7 @@
             var messageInput = document.getElementById('message-input');
             var message = messageInput.value;
 
-            // Fetch API to send the message
+            // fetch API to send the message
             fetch(`/chat/send?chat={{ $chat_id }}`, {
                 method: 'POST',
                 headers: {
@@ -112,24 +104,22 @@
             })
             .then(response => response.json())
             .then(data => {
-                // Refresh or update the UI with the new message
+                // refresh or update the UI with the new message
                 fetchMessages({{ $chat_id }});
-                // Clear the input after sending
+                // clear the input after sending
                 messageInput.value = '';
             })
             .catch(error => {
                 console.error('Error sending message:', error);
             });
-
         }
         messageContainer.scrollTop = messageContainer.scrollHeight;
     }
 
-    // Function to handle Enter key press
     function handleEnterKey(event) {
         if (event.keyCode === 13) {
-            event.preventDefault(); // Prevent the default behavior (line break in the input)
-            sendMessage(); // Trigger the sendMessage function
+            event.preventDefault(); 
+            sendMessage(); 
         }
     }
 
@@ -144,7 +134,7 @@
 
         document.body.appendChild(alertContainer);
 
-        // Remove the alert after a few seconds (adjust the timeout as needed)
+        // remove the alert after a few seconds (adjust the timeout as needed)
         setTimeout(() => {
             document.body.removeChild(alertContainer);
         }, 3000);

@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
-use App\Managers\ErrorManager;
 use App\Utils\SiteUtil;
+use Illuminate\Http\Request;
 use Illuminate\Database\DatabaseManager;
 
 class DatabaseOnline

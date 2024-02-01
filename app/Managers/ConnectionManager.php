@@ -2,8 +2,6 @@
 
 namespace App\Managers;
 
-use App\Models\Blocked;
-use App\Models\Chat;
 use App\Models\Connection;
 
 class ConnectionManager 
@@ -166,7 +164,4 @@ class ConnectionManager
         $data->delete();
 
     }
-
-
-
 }

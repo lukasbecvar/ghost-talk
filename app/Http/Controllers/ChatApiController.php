@@ -29,18 +29,21 @@ class ChatApiController extends Controller
     {
         if ($this->userManager->isLoggedin()) {
 
+            // get chat id (query parameter)
             $chat_id = request('chat');
 
+            // check if chat id is seteds
             if ($chat_id == null) {
                 $this->errorManager->handleError('error chat (query string parameter) is null', 400);
             } 
             
+            // escape chat id
             $chat_id = $this->securityUtil->escapeString($chat_id);
             
+            // get chat messages
             $chat_messages = $this->chatManager->getMessages($chat_id);
 
             return json_encode($chat_messages);
-
         } else {
             return view('error/error-403');
         }
@@ -50,38 +53,40 @@ class ChatApiController extends Controller
     {
         if ($this->userManager->isLoggedin()) {
 
+            // get chat id (query parameter)
             $chat_id = request('chat');
+
+            // get message sender
             $sender = $this->userManager->getLoggedUsername();
     
+            // get message
             $message_input = $request->input('message');
 
+            // check maximal chat message length
             if (strlen($message_input) > 2050) {
                 $this->errorManager->handleError('maximal message length is 2000 characters', 400);
             }
 
+            // escape chat message
             $message_input = $this->securityUtil->encryptAes($message_input);
 
             try {
-                // Assume you have a Message model
+                // init message modeů
                 $message = new Message();
     
-    
+                // set message data
                 $message->setMessage($message_input);
                 $message->setSender($sender);
                 $message->setChatID($chat_id);
     
-    
+                // insert new chat message
                 $message->save();
         
                 return response()->json(['message' => 'Message sent successfully']);
             } catch (\Exception $e) {
-                // Log the error for debugging
-                logger('Error sending message:'. $e->getMessage());
-        
-                // Return an error response
-                return response()->json(['error' => 'Error sending message'], 500);
+                $this->errorManager->handleError('error to insert new message: '.$e->getMessage(), 500);
+                return null;
             }
-
         } else {
             return view ('error/error-403');
         }

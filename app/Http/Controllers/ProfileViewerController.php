@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controller;
-use App\Managers\ConnectionManager;
 use App\Utils\SecurityUtil;
 use App\Managers\UserManager;
+use App\Managers\ConnectionManager;
 use Illuminate\Contracts\View\View;
 
 class ProfileViewerController extends Controller
@@ -52,6 +52,7 @@ class ProfileViewerController extends Controller
                 // get user data 
                 $user_data = $this->userManager->getUserData('token', $token);
                 
+                // get connection status
                 $connection_status = $this->connectionManager->getConnectionStatus($profile_name, $username);
 
                 return view('components/profile-viewer', [

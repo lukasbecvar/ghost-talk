@@ -35,14 +35,14 @@ class SecurityUtil
 		// derive a fixed-size key using PBKDF2 with SHA-256
 		$derived_key = hash_pbkdf2("sha256", $key, "", 10000, 32);
 		
-		// Generate a random Initialization Vector (IV) for added security
+		// generate a random Initialization Vector (IV) for added security
 		$iv = openssl_random_pseudo_bytes(16);
 	
 		// encrypt the plain text using AES encryption with the derived key and IV
 		$encrypted_data = openssl_encrypt($plain_text, $method, $derived_key, 0, $iv);
 	
-		// xombine the IV and encrypted data, then base64 encode the result
-		$result = $iv . $encrypted_data;
+		// IV and encrypted data, then base64 encode the result
+		$result = $iv.$encrypted_data;
 	
 		return base64_encode($result);
 	}
