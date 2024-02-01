@@ -17,4 +17,15 @@ class UserFactory extends Factory
             'role' => 'user'
         ];
     }
+
+    public function create_test_user(): UserFactory
+    {
+        return $this->state([
+            'username' => 'lordbecvold',
+            'password' => bcrypt('testtest'),
+            'token' => Str::random(30),
+            'status' => 'active',
+            'role' => 'owner',
+        ]);
+    }
 }
