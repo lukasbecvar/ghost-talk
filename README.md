@@ -22,6 +22,8 @@ The ghost talk has no functions for logging ip address or other values like geol
 For the maximum anonymity it will be impossible to use any type of email address authentication, login and registration will be only with username and password. It will never be possible to reset passwords!
 
 ## TODOS version: 2.0
+- [ ] Docker env
+- [ ] CI actions tests
 - [ ] Global chat
 - [ ] User settings (change password, deactivate account, delete all connections)
 - [ ] Photo & video share in chat
