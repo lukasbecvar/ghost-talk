@@ -4,7 +4,7 @@ The lightweight, anonymous chat application based on Laravel php framework
 ## About
 The main focus is on the anonymous and lightweight chat application with basic chat (only text) function with minimal javascript and without logging anything on host server.
 
-## Main usage
+## Primary use
 The main usage of this application is usage under onion network for people in censored countries. 
 I would like to set higher standard and quality of anonymous chat applications as opposed to similar "shit coded solutions"
 
