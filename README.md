@@ -29,7 +29,7 @@ For the maximum anonymity it will be impossible to use any type of email address
 - [ ] Design improvements
 - [ ] Complete refactor
 
-## TODOS version: 2.0
+## TODOS version: 3.0
 - [ ] Admin system
 
 ## Dependencies 
