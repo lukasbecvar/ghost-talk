@@ -26,4 +26,4 @@ For the maximum anonymity it will be impossible to use any type of email address
    * [Website](https://laravel.com/)
    
 ## License
-The framework is open-sourced software licensed under the [MIT license]([https://opensource.org/licenses/MIT](https://github.com/lukasbecvar/ghost-talk/blob/main/LICENSE)).
+This project is open-sourced software licensed under the MIT license.
