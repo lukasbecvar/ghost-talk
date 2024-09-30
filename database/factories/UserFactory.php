@@ -31,7 +31,7 @@ class UserFactory extends Factory
     public function create_test_user(): UserFactory
     {
         return $this->state([
-            'username' => 'lordbecvold',
+            'username' => 'lukasbecvar',
             'password' => bcrypt('testtest'),
             'token' => Str::random(30),
             'status' => 'active',

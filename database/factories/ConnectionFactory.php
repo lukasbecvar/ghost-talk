@@ -14,8 +14,8 @@ class ConnectionFactory extends Factory
     public function definition()
     {
         return [
-            'users' => [$this->faker->userName, 'lordbecvold'],
-            'sender' => 'lordbecvold',
+            'users' => [$this->faker->userName, 'lukasbecvar'],
+            'sender' => 'lukasbecvar',
             'status' => 'active'
         ];
     }
