@@ -24,6 +24,9 @@ For the maximum anonymity it will be impossible to use any type of email address
 ## Dependencies 
 * Laravel
    * [Website](https://laravel.com/)
-   
+
+## End of support
+This project is no longer being maintained or developed, and no further updates or support will be provided.
+
 ## License
 This project is open-sourced software licensed under the MIT license.
