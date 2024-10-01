@@ -1,6 +1,10 @@
 # Ghost Talk
 The lightweight, anonymous chat application based on Laravel php framework
 
+> [!WARNING]
+> ### End of support
+> This project will no longer be updated or maintained.
+
 ## About
 The main focus is on the anonymous and lightweight chat application with basic chat (only text) function with minimal javascript and without logging anything on host server.
 
@@ -24,9 +28,6 @@ For the maximum anonymity it will be impossible to use any type of email address
 ## Dependencies 
 * Laravel
    * [Website](https://laravel.com/)
-
-## End of support
-This project is no longer being maintained or developed, and no further updates or support will be provided.
 
 ## License
 This project is open-sourced software licensed under the MIT license.
